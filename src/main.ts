@@ -1,7 +1,7 @@
 import  { SerialPort } from "serialport";
 
 // シリアルポートの設定（ポート名は環境によって変更してください）
-const path = "/dev/ttyACM0";
+const path = "/../../dev/ttyACM0";
 const port = new SerialPort({path, 
   baudRate: 57600, // StandardFirmataでのデフォルト
 });
