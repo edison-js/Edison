@@ -5,11 +5,11 @@ import { bufferOutput } from "./components/bufferOutput";
 import { portClose } from "./components/portClose";
 
 export const LED = async (pin: number, onoff: boolean) => {
-    try {
+
       const path = await findArduinoPath();
       const port = new SerialPort({ path, baudRate: 57600 });
       const IOMESSAGE = 0x90;
-  
+
       const on =  async ():Promise<void> => {
         await setPinOutput(pin, port);
         const bufferValue = 1 << (pin & 0x07);
@@ -29,7 +29,7 @@ export const LED = async (pin: number, onoff: boolean) => {
       };
 
       port.on('data',   (data) => {
-        //console.log('Data from Arduino:', data);
+        console.log('Data from Arduino:', data);
         // If the last 2 bytes are <Buffer 00 f7>, we can light the LED
 
         const lastTwoBytes = data.slice(-2);
@@ -42,9 +42,3 @@ export const LED = async (pin: number, onoff: boolean) => {
         }
       });
     }
-
-    catch (error) {
-      console.error("Error:", error);
-    }
-
-  };
