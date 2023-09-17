@@ -1,42 +1,38 @@
-import { SerialPort } from "serialport"
-import { findArduinoPath } from "./components/findArduinoPath";
-import { bufferOutput } from "./components/bufferOutput";
+import {SerialPort} from 'serialport';
+import { findArduinoPath } from './components/findArduinoPath';
+import { setServoAngle } from './helper/Servo/setServoAngle';
+import { setPinToServo } from './helper/Servo/setPinToServo';
+import { portClose } from './components/portClose';
 
-const START_SYSEX = 0xF0;
-const END_SYSEX = 0xF7;
-const SERVO_CONFIG = 0x70;
-const SET_PIN_MODE = 0xF4;
-const SERVO = 0x0E;
-const ANALOG_MESSAGE = 0xE0; // Command for analog message in Firmata
 
 export const Servo = async (pin: number, angle: number) => {
+  let isFirstDataReceived = true;
+  let receivedData = Buffer.alloc(0); // concat data buffer from arduino
 
   const path = await findArduinoPath();
-  const port = new SerialPort({ path, baudRate: 57600 });
+  const port = new SerialPort({path, baudRate: 57600 });
 
-// SERVO_CONFIGコマンドを送信してサーボモーターを設定
-const servoConfig = Buffer.from([START_SYSEX, SERVO_CONFIG, 9, 0, 180 & 0x7F, (180 >> 7) & 0x7F, END_SYSEX]);
-port.write(servoConfig);
+// Wait for the serial port to open
+port.on('data', async function(data) {
+  receivedData = Buffer.concat([receivedData, data]); // concat received buffer
+  const sixteenthBit = receivedData.toString('hex') // convert buffer to 16bit string
+  //console.log(sixteenthBit)
 
-// EXTENDED_ANALOGコマンドを送信してサーボモーターを制御
+  if (isFirstDataReceived) {
+  isFirstDataReceived = false;
+  await setPinToServo(pin, port);
+  //console.log(`Setting servo angle to ${angle}`);
+  await setServoAngle(pin, angle, port);
+  }
 
-port.on('data', (data) => {
-  console.log('Data from Arduino:', data);
-  const lastTwoBytes = data.slice(-2);
-
-  if (lastTwoBytes.equals(Buffer.from([0x00, 0xf7]))) {
-    setInterval(() => {
-      // angleは0-180の範囲で設定
-      console.log(angle);
-      const servoControl = Buffer.from([ANALOG_MESSAGE, 9, 90 & 0x7F, (90 >> 7) & 0x7F]);
-      port.write(servoControl);
-      angle += 10;
-      if (angle > 180) {
-        angle = 0;
-      }
-    }, 2000);
-}
+  // If the last 2 bytes are <Buffer 00 f7>, you can close the port
+  if (sixteenthBit.endsWith('00f7')) {
+    await portClose(port);
+  }
 });
-}
 
-Servo(9, 30);
+// Open errors will be emitted as an error event
+port.on('error', function(err) {
+  console.log('Error: ', err.message);
+})
+}

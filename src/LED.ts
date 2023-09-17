@@ -4,9 +4,10 @@ import { setPinOutput } from "./components/setPinOutput";
 import { bufferOutput } from "./components/bufferOutput";
 import { portClose } from "./components/portClose";
 
-export const LED = async (pin: number, onoff: boolean) => {
-
+export const LED = async ( pin: number, onoff: boolean) => {
+console.time('path');
       const path = await findArduinoPath();
+      console.timeLog('path', path);
       const port = new SerialPort({ path, baudRate: 57600 });
       const IOMESSAGE = 0x90;
 
@@ -15,16 +16,16 @@ export const LED = async (pin: number, onoff: boolean) => {
         const bufferValue = 1 << (pin & 0x07);
         const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00]);
         await bufferOutput(port, buffer);
-        portClose(port);
+        await portClose(port);
         return;
       };
   
-      const off = ():Promise<void> => {
+      const off = async ():Promise<void> => {
         setPinOutput(pin, port);
         const bufferValue = 1 << (0x00);
         const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00]);
-        bufferOutput(port, buffer);
-        portClose(port);
+        await bufferOutput(port, buffer);
+        await portClose(port);
         return;
       };
 
