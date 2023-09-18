@@ -10,5 +10,6 @@ export const setPinToServo = (pin:number, port:SerialPort):Promise<void> => {
       PIN_MODE_SERVO // Pin mode
     ];
     port.write(Buffer.from(data));
+    console.log('setpintoservo,',data)
     return;
   }
