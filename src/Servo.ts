@@ -1,7 +1,7 @@
 import {SerialPort} from 'serialport';
 import { setServoAngle } from './helper/Servo/setServoAngle';
 import { setPinToServo } from './helper/Servo/setPinToServo';
-import { portClose } from './components/portClose';
+import { portClose } from './utils/portClose';
 
 export const Servo = ( path:string, pin: number, angle: number): Promise<void> => {
   const port = new SerialPort({ path, baudRate: 57600 });
