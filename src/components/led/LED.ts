@@ -1,14 +1,10 @@
 import { SerialPort } from "serialport"
-import { findArduinoPath } from "./utils/findArduinoPath";
-import { setPinOutput } from "./utils/setPinOutput";
-import { bufferOutput } from "./utils/bufferOutput";
-import { portClose } from "./utils/portClose";
+import { findArduinoPath } from "../../utils/findArduinoPath";
+import { setPinOutput } from "../../utils/setPinOutput";
+import { bufferOutput } from "../../utils/bufferOutput";
+import { portClose } from "../../utils/portClose";
 
-export const LED = async ( pin: number, onoff: boolean) => {
-console.time('path');
-      const path = await findArduinoPath();
-      console.timeLog('path', path);
-      const port = new SerialPort({ path, baudRate: 57600 });
+export const setLedState = async ( pin: number, onoff: boolean, port:SerialPort) => {
       const IOMESSAGE = 0x90;
 
       const on =  async ():Promise<void> => {
