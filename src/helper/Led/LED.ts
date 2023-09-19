@@ -10,10 +10,8 @@ export const setLedState = async ( pin: number, onoff: boolean, port:SerialPort)
         await setPinOutput(pin, port);
         const bufferValue = 1 << (pin & 0x07);
         const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00]);
-        setTimeout(async () => {
-          await bufferOutput(port, buffer);
-        }, 3000);
-
+        await bufferOutput(port, buffer);
+        console.log('on')
         return;
       };
   
