@@ -15,6 +15,6 @@ export interface PwmMode {
   }
 
 export interface ServoMode {
-    lotate: (angle: number) => Promise<void>;
+    rotate: (angle: number) => Promise<void>;
 }
 

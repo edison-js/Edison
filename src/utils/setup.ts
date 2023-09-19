@@ -28,7 +28,7 @@ const setup = async () => {
 
   const servo = (pin: number) => {
     return {
-      lotate: async (angle: number) => {
+      rotate: async (angle: number) => {
         console.log(4)
         await setPinToServo(pin, port);
         await setServoAngle(pin, angle, port);
