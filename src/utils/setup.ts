@@ -6,19 +6,19 @@ import { delay } from "./delay";
 import { setLedState } from "../components/led/LED";
 
 const setup = async () => {
-    console.log(1)
+    //console.log(1)
     const path = await findArduinoPath()
     
     const port = new SerialPort({ path, baudRate: 57600 });
     
     let onDataReady: (() => void) | null = null;
     const dataReady = new Promise<void>(resolve => {
-        console.log(3)
+        //console.log(3)
       onDataReady = resolve;
     });
 
     port.on('data', (data) => {
-        console.log('Data:', data)
+        //console.log('Data:', data)
         if (onDataReady) {
            onDataReady();
          }
@@ -29,11 +29,11 @@ const setup = async () => {
   const servo = (pin: number) => {
     return {
       rotate: async (angle: number) => {
-        console.log(4)
+        //console.log(4)
         await setPinToServo(pin, port);
         await setServoAngle(pin, angle, port);
 
-        console.log(`Rotating to ${angle} degrees`);
+        //console.log(`Rotating to ${angle} degrees`);
         const DELAY_TIME = 290 +(Math.abs(angle - 90) * 2.5);
         await delay(DELAY_TIME);
       }
