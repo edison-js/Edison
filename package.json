@@ -6,8 +6,8 @@
   "devDependencies": {
     "@types/node": "^20.6.0"
   },
-  "name": "testaaadfheahf",
-  "version": "0.1.3",
+  "name": "edison",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
