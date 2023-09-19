@@ -1,9 +1,10 @@
+import setup from "../utils/setup"
 
-// const path = "/dev/ttyACM0";
-// const port = portOpen(path);
-/*you can write your code here*/
-// LED( 12, true);
+const main = async () => {
+    const port = await setup();
+    const led1 = port.led(0);
 
-//LED(12, true);
+    await led1.on();
+}
 
-
+main();
