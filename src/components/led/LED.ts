@@ -27,9 +27,18 @@ export const setLedState = async ( pin: number, onoff: boolean, port:SerialPort)
         await portClose(port);
         return;
       };
-        if (onoff) {
-              on();
-      } else {
-              off();
-          }       
+
+      port.on('data',   (data) => {
+        console.log('Data from Arduino:', data);
+        // If the last 2 bytes are <Buffer 00 f7>, we can light the LED
+
+        const lastTwoBytes = data.slice(-2);
+        if (lastTwoBytes.equals(Buffer.from([0x00, 0xf7]))) {
+            if (onoff) {
+                on();
+            } else {
+                off();
+            }       
+        }
+      });
     }

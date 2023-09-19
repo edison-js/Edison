@@ -1,4 +1,4 @@
-import setup from "../utils/setupTests";
+import setup from "../utils/setup";
 
 const main = async () => {
     const port = await setup();  
