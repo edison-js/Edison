@@ -9,6 +9,6 @@ export const  setServoAngle = (pin:number, angle: number, port:SerialPort):Promi
       (angle >> 7) & 0x7F // bitwise shift and take next 7 bits
     ];
     port.write(Buffer.from(data));
-    console.log('setservoangle,',data)
+    //console.log('setservoangle,',data)
     return;
   }
