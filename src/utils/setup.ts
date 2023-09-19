@@ -43,11 +43,9 @@ const setup = async () => {
   const led = (pin: number) => {
     return {
       on: async () => {
-        await dataReady;
         await setLedState(pin, true, port);
       },
       off: async () => {
-        await dataReady;
         await setLedState(pin, false, port);
       }
     };
