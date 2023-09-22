@@ -13,6 +13,7 @@ export const setAnalogState = (pin: number, port: SerialPort) => {
         const buffer = Buffer.from([REPORT_ANALOG | pin, 1]);
         bufferAnalog(port, buffer);
 
+        
         const onData = (data: Buffer) => {
             if ((data[0] & 0xF0) === ANALOG_MESSAGE) {
                 const pin = data[0] & 0x0F;
@@ -31,7 +32,6 @@ export const setAnalogState = (pin: number, port: SerialPort) => {
                 }
             }
         };
-        
         port.on("data", onData);
 
         return () => {
