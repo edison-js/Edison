@@ -1,15 +1,15 @@
 import { SerialPort } from "serialport";
-import { setLedState } from "../../helper/Led/LED";
+import { setOutputState } from "../../helper/Output/setOutputState";
 
 //factory fuction for led <= 
 export const outputPort = (port:SerialPort) => {
   return (pin: number) => {
     return {
       on: async () => {
-        await setLedState(pin, true, port);
+        await setOutputState(pin, true, port);
       },
       off: async () => {
-        await setLedState(pin, false, port);
+        await setOutputState(pin, false, port);
       }
     };
   };
