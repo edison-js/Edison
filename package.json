@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "@types/serialport": "^8.0.2",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
+    "rxjs": "^7.8.1",
     "serialport": "^12.0.0"
   },
   "devDependencies": {
@@ -12,7 +17,8 @@
   "types": "dist/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"./src/**/*.{ts}\""
   },
   "repository": {
     "type": "git",
