@@ -2,7 +2,7 @@ import { SerialPort } from 'serialport'
 import { bufferAnalog } from '../helper/Analog/bufferAnalog'
 import { Observable } from 'rxjs'
 
-export const setAnalogState = (pin: number, port: SerialPort) => {
+export const prettierChange = (pin: number, port: SerialPort) => {
   const REPORT_ANALOG = 0xc0
   const ANALOG_MESSAGE = 0xe0
   const CONSECUTIVE_ON = 5

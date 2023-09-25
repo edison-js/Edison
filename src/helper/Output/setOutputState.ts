@@ -1,34 +1,38 @@
-import { SerialPort } from "serialport"
-import { setPinOutput } from "./setPinOutput";
-import { bufferOutput } from "./bufferOutput";
-import { delay } from "../../utils/delay";
+import { SerialPort } from 'serialport'
+import { setPinOutput } from './setPinOutput'
+import { bufferOutput } from './bufferOutput'
+import { delay } from '../../utils/delay'
 
-export const setOutputState = async ( pin: number, onoff: boolean, port:SerialPort) => {
-      const IOMESSAGE = 0x90;
+export const setOutputState = async (
+  pin: number,
+  onoff: boolean,
+  port: SerialPort,
+) => {
+  const IOMESSAGE = 0x90
 
-      const on =  async ():Promise<void> => {
-        await setPinOutput(pin, port);
-        const bufferValue = 1 << (pin & 0x07);
-        const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00]);
-        await bufferOutput(port, buffer);
-        console.log('on')
-        return;
-      };
-  
-      const off = async ():Promise<void> => {
-        await setPinOutput(pin, port);
-        const bufferValue = 1 << (0x00);
-        const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00]);
-        await bufferOutput(port, buffer);
-        console.log('off')
-        return;
-      };
+  const on = async (): Promise<void> => {
+    await setPinOutput(pin, port)
+    const bufferValue = 1 << (pin & 0x07)
+    const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00])
+    await bufferOutput(port, buffer)
+    //console.log('on')
+    return
+  }
 
-      if (onoff) {
-                on();
-                await delay(20);
-            } else {
-                off();
-                await delay(20);
-            }       
-    }
+  const off = async (): Promise<void> => {
+    await setPinOutput(pin, port)
+    const bufferValue = 1 << 0x00
+    const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00])
+    await bufferOutput(port, buffer)
+    //console.log('off')
+    return
+  }
+
+  if (onoff) {
+    on()
+    await delay(20)
+  } else {
+    off()
+    await delay(20)
+  }
+}
