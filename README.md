@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300px" src="https://g" alt ="なんかいい感じの画像">
+  <img width="300px" src="./public/icon.png" alt ="なんかいい感じの画像">
 </p>
 
 <h1 align="center">Edison</h1>
@@ -18,7 +18,6 @@ Our documentation site is none now
 
 please click on [the official site](https://www.arduino.cc/en/software) and install it.
 
-
 ## How to use in WSL
 
 Please read [this article](https://zenn.dev/konjikun/articles/e905f4ce99d3ea).
@@ -30,7 +29,9 @@ Install Edison your project
 ```console
 npm install edison
 ```
-or 
+
+or
+
 ```console
 yarn add edison
 ```
@@ -55,4 +56,3 @@ main();
 We love collaborating with folks inside and outside of GitHub and welcome contributions!
 
 > 👉 I'll create developers role on this project as soon as possible.
-
