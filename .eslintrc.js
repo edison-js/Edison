@@ -37,5 +37,6 @@ module.exports = {
     'no-dupe-args': ['error'],
     'no-dupe-keys': ['error'],
     'no-unreachable': ['error'],
+    "brace-style": ["error", "stroustrup"]
   },
 }
