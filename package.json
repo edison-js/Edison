@@ -1,23 +1,26 @@
 {
   "dependencies": {
     "@types/serialport": "^8.0.2",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.3",
     "rxjs": "^7.8.1",
     "serialport": "^12.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.6.0"
+    "@types/jest": "^28.1.8",
+    "@types/node": "^20.6.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^28.1.3",
+    "prettier": "^3.0.3",
+    "ts-jest": "^28.0.8"
   },
   "name": "edison",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "format": "prettier --write \"./src/**/*.{ts}\""
   },
   "repository": {
