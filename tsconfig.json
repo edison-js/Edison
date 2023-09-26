@@ -8,7 +8,8 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "strict": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types":["vitest/globals"]
   },
   "include": [
     "src/**/*.ts"
