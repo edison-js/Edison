@@ -1,6 +1,6 @@
-import { SerialPort } from "serialport";
+import { SerialPort } from 'serialport'
 
-export const portOpen = (path:string) =>{
-    const port = new SerialPort({path, baudRate: 57600 });
-    return port 
+export const portOpen = (path: string): SerialPort<any> => {
+  const port = new SerialPort({ path, baudRate: 57600 })
+  return port
 }

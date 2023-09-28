@@ -1,5 +1,4 @@
-import setup from '../utils/setup'
-
+import setup from '../src/utils/setup'
 const main = async () => {
   const port = await setup()
   const buzzer1 = port.buzzer(12)

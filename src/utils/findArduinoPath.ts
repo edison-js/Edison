@@ -9,9 +9,13 @@ export const findArduinoPath = async (): Promise<string | null> => {
         return port.path
       }
     }
+    //There is no arduino board
     return null
   } catch (error) {
-    console.error('An error occurred while finding the Arduino port:', error)
+    console.error(
+      'An error occurred while finding the Arduino port. Check your connection with your device:',
+      error,
+    )
     return null
   }
 }
