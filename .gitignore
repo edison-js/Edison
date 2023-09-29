@@ -3,3 +3,4 @@ src/*.js
 dist
 dist/*
 package-lock.json
+coverage
