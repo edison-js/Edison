@@ -9,7 +9,6 @@
     "outDir": "./dist",
     "strict": false,
     "esModuleInterop": true,
-    "types":["vitest/globals"]
   },
   "include": [
     "src/**/*.ts"

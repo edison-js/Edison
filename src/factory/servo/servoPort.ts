@@ -12,7 +12,7 @@ export const servoPort = (port: SerialPort) => {
         await setServoAngle(pin, angle, port)
 
         ////console.log(`Rotating to ${angle} degrees`);
-        const DELAY_TIME = 290 + Math.abs(angle - 90) * 2.5
+        const DELAY_TIME = 180 + Math.abs(angle - 90) * 2.5
         await delay(DELAY_TIME)
       },
     }
