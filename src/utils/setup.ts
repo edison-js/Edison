@@ -4,9 +4,8 @@ import { outputPort } from '../factory/output/outputPort'
 import { servoPort } from '../factory/servo/servoPort'
 import { analogPort } from '../factory/analog/analogPort'
 
-const setup = async () => {
-  //console.log(1)
-
+// This func is assured to be called after the arduino is ready
+export const setup = async () => {
   const START_SYSEX = 0xf0
   const END_SYSEX = 0xf7
   const SET_PIN_MODE = 0xf4
@@ -38,5 +37,3 @@ const setup = async () => {
     pressureSensor: analogPort(port),
   }
 }
-
-export default setup

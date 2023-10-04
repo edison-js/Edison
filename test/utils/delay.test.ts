@@ -1,20 +1,16 @@
 import { delay } from '../../src/utils/delay'
-import { describe, expect, it, vitest } from 'vitest'
 
-vitest.useFakeTimers()
+describe('_delay function', () => {
+  it('should wait for specified milliseconds', async () => {
+    const startTime = Date.now()
+    const waitTime = 100
 
-describe('delay function', () => {
-  it('should delay for specified time', async () => {
-    const mockFn = vitest.fn()
+    await delay(waitTime)
 
-    delay(1000).then(mockFn)
+    const endTime = Date.now()
+    const elapsedTime = endTime - startTime
 
-    vitest.advanceTimersByTime(999)
-    await Promise.resolve()
-    expect(mockFn).not.toHaveBeenCalled()
-
-    vitest.advanceTimersByTime(1)
-    await Promise.resolve()
-    expect(mockFn).toHaveBeenCalled()
+    expect(elapsedTime).toBeGreaterThanOrEqual(waitTime)
+    expect(elapsedTime).toBeLessThan(waitTime + 5)
   })
 })

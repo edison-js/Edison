@@ -14,6 +14,7 @@ export const setAnalogState = (pin: number, port: SerialPort) => {
     const buffer = Buffer.from([REPORT_ANALOG | pin, 1])
     bufferAnalog(port, buffer)
 
+    /* The funcc is deffered to the setup func. This onData func is assured to be called after the sensor is ready */
     const onData = (data: Buffer) => {
       if ((data[0] & 0xf0) === ANALOG_MESSAGE) {
         const pinData = data[0] & 0x0f
