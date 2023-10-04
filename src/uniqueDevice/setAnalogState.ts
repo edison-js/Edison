@@ -5,8 +5,8 @@ import { Observable } from 'rxjs'
 export const setAnalogState = (pin: number, port: SerialPort) => {
   const REPORT_ANALOG = 0xc0
   const ANALOG_MESSAGE = 0xe0
-  const CONSECUTIVE_ON = 5
-  const CONSSECUTIVE_OFF = 5
+  const CONSECUTIVE_ON = 7
+  const CONSSECUTIVE_OFF = 7
 
   let onCount = 0
   let offCount = 0
@@ -20,6 +20,7 @@ export const setAnalogState = (pin: number, port: SerialPort) => {
         const pinData = data[0] & 0x0f
         if (pin === pinData) {
           const value = data[1] | (data[2] << 7)
+          //console.log(value)
           // is 0 consecutive?
           if (value < 10) {
             onCount++

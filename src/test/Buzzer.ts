@@ -1,9 +1,9 @@
-import { setup } from '../utils/setup'
-const main = async () => {
-  const port = await setup()
-  const buzzer1 = port.buzzer(12)
-  await buzzer1.on()
-  await buzzer1.off()
-}
+import { board } from '../utils/board'
+import { createBuzzer } from '../factory/output/uniqueDevice/buzzer'
+import { SerialPort } from 'serialport'
 
-main()
+board.on('ready', (port: SerialPort) => {
+  console.log('Board is ready!')
+  const buzzer = createBuzzer(port, 12)
+  buzzer.on()
+})

@@ -1,5 +1,5 @@
 import { board } from '../utils/board'
-import { createLed } from '../factory/led'
+import { createLed } from '../factory/output/uniqueDevice/led'
 import { SerialPort } from 'serialport'
 
 board.on('ready', (port: SerialPort) => {

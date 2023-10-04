@@ -1,3 +1,4 @@
+/*
 import { setup } from '../utils/setup'
 
 const main = async () => {
@@ -17,3 +18,4 @@ const main = async () => {
 }
 
 main()
+*/

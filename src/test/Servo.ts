@@ -1,14 +1,11 @@
-import { setup } from '../utils/setup'
+import { board } from '../utils/board'
+import { createServo } from '../factory/servo/uniqueDevice/servo'
+import { SerialPort } from 'serialport'
 
-const main = async () => {
-  const port = await setup()
-  const servo1 = port.servo(8)
-
-  await servo1.rotate(0)
-  await servo1.rotate(90)
-  await servo1.rotate(180)
-  await servo1.rotate(90)
-  await servo1.rotate(0)
-}
-
-main()
+board.on('ready', async (port: SerialPort) => {
+  console.log('Board is ready!')
+  const servo = createServo(port, 8)
+  await servo.rotate(50)
+  await servo.rotate(150)
+  await servo.rotate(50)
+})

@@ -1,6 +1,6 @@
-import { outputPort } from './output/outputPort'
+import { outputPort } from '../outputPort'
 import { SerialPort } from 'serialport'
-import { delay } from '../utils/delay'
+import { delay } from '../../../utils/delay'
 
 export const createLed = (port: SerialPort, pin: number) => {
   const led = outputPort(port)(pin)

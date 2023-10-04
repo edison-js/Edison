@@ -1,3 +1,4 @@
+/*
 import { SerialPort } from 'serialport'
 import { findArduinoPath } from './findArduinoPath'
 import { outputPort } from '../factory/output/outputPort'
@@ -37,3 +38,4 @@ export const setup = async () => {
     pressureSensor: analogPort(port),
   }
 }
+*/
