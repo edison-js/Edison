@@ -14,14 +14,14 @@
   },
   "name": "edison",
   "type": "module",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "main": "dist/index.js",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     }
-  },  
+  },
   "types": "dist/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
