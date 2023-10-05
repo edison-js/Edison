@@ -5,7 +5,7 @@ import { findArduinoPath } from './findArduinoPath'
 export const board = new EventEmitter()
 
 const setupBoard = async () => {
-  const path = await findArduinoPath()
+  const path = (await findArduinoPath()) as string
   const port = new SerialPort({ path, baudRate: 57600 })
 
   let isReadyEmitted = false
