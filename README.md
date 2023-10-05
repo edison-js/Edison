@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300px" src="./public/images/icon.png">
+  <img width="300px" src="/public/images/icon.png">
 </p>
 
 <h1 align="center">Edison</h1>
@@ -39,16 +39,15 @@ yarn add edison
 ## Getting Started
 
 ```.ts
-import setup from "../utils/setup"
+import { SerialPort } from 'serialport'
+import { board, createLed } from 'edison'
 
-const main = async () => {
-    const port = await setup();
-    const led1 = port.led(9);
+board.on('ready', (port: SerialPort) => {
+  console.log('Board is ready!')
+  const led = createLed(port, 12)
+  led.blink(500)
+})
 
-    await led1.on();
-}
-
-main();
 ```
 
 ## Contributing
