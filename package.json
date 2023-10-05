@@ -14,8 +14,10 @@
   },
   "name": "edison",
   "version": "0.1.5",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": "./dist/index.js",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
     "test": "jest --coverage",
