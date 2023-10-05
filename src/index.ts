@@ -1,2 +1,6 @@
 export { board } from './utils/board'
-export * from './utils/board'
+export { createLed } from './factory/output/uniqueDevice/led'
+export { createBuzzer } from './factory/output/uniqueDevice/buzzer'
+export { createSensor } from './factory/analog/uniqueDevice/pressierSensor'
+export { delay } from './utils/delay'
+export { SerialPort } from 'serialport'
