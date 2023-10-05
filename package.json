@@ -2,8 +2,7 @@
   "dependencies": {
     "@types/serialport": "^8.0.2",
     "rxjs": "^7.8.1",
-    "serialport": "^12.0.0",
-    "ts-node": "^10.9.1"
+    "serialport": "^12.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
@@ -14,10 +13,7 @@
     "prettier": "^3.0.3"
   },
   "name": "edison",
-  "bin": {
-    "edison": "./path-to/edison.js"
-  },
-  "version": "0.1.9",
+  "version": "0.1.8",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,8 +21,7 @@
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
     "test": "jest --coverage",
-    "format": "prettier --write \"./src/**/*.{ts}\"",
-    "edison": "tsc && node"
+    "format": "prettier --write \"./src/**/*.{ts}\""
   },
   "repository": {
     "type": "git",
