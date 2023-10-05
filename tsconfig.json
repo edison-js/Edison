@@ -11,8 +11,8 @@
     "esModuleInterop": true,
   },
   "include": [
-    "src/**/*.ts"
-, "global.d.ts"  ],
+    "src/**/*.ts",
+    "global.d.ts"  ],
   "exclude": [
   "node_modules", "./dist"
   ]
