@@ -1,5 +1,7 @@
 <p align="center">
+
   <img width="300px" src="/public/images/icon.png" alt ="なんかいい感じの画像">
+
 </p>
 
 <h1 align="center">Edison</h1>
