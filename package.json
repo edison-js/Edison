@@ -16,9 +16,16 @@
   "type": "module",
   "version": "0.1.14",
   "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },  
   "types": "dist/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
     "test": "jest --coverage",
     "format": "prettier --write \"./src/**/*.{ts}\""
   },
