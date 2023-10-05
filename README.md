@@ -1,5 +1,7 @@
 <p align="center">
-  <img width="300px" src="/public/images/icon.png">
+
+  <img width="300px" src="/public/images/icon.png" alt ="なんかいい感じの画像">
+
 </p>
 
 <h1 align="center">Edison</h1>
@@ -47,7 +49,6 @@ board.on('ready', (port: SerialPort) => {
   const led = createLed(port, 12)
   led.blink(500)
 })
-
 ```
 
 ## Contributing
