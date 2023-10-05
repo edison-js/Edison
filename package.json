@@ -13,7 +13,7 @@
     "prettier": "^3.0.3"
   },
   "name": "edison",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
