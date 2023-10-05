@@ -1,1 +1,2 @@
-export { default as setup } from './utils/setup'
+export { board } from './utils/board'
+export * from './utils/board'
