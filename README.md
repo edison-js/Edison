@@ -40,11 +40,11 @@ yarn add edison
 
 ```.ts
 import { SerialPort } from 'serialport'
-import { board, createLed } from 'edison'
+import { board, attachLed } from 'edison'
 
 board.on('ready', (port: SerialPort) => {
   console.log('Board is ready!')
-  const led = createLed(port, 12)
+  const led = attachLed(port, 12)
   led.blink(500)
 })
 ```

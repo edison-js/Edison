@@ -2,11 +2,10 @@ import { outputPort } from '../outputPort'
 import { SerialPort } from 'serialport'
 import { delay } from '../../../utils/delay'
 
-export const createLed = (port: SerialPort, pin: number) => {
+export const attachLed = (port: SerialPort, pin: number) => {
   const led = outputPort(port)(pin)
 
   return {
-    pin,
     blink: async (duration: number) => {
       while (true) {
         await led.on()
@@ -14,6 +13,12 @@ export const createLed = (port: SerialPort, pin: number) => {
         await led.off()
         await delay(duration)
       }
+    },
+    on: async () => {
+      await led.on()
+    },
+    off: async () => {
+      await led.off()
     },
   }
 }
