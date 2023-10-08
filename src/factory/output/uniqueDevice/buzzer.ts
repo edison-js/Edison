@@ -2,7 +2,7 @@ import { outputPort } from '../outputPort'
 import { SerialPort } from 'serialport'
 import { delay } from '../../../utils/delay'
 
-export const createBuzzer = (port: SerialPort, pin: number) => {
+export const attachBuzzer = (port: SerialPort, pin: number) => {
   const buzzer = outputPort(port)(pin)
 
   return {

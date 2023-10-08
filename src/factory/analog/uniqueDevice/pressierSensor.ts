@@ -2,7 +2,7 @@ import { SerialPort } from 'serialport'
 import { AnalogPin, Sensor } from '../../../types/analog/analog'
 import { analogPort } from '../analogPort'
 
-export const createSensor = (port: SerialPort, pin: AnalogPin) => {
+export const attachSensor = (port: SerialPort, pin: AnalogPin) => {
   const pressureSensor = analogPort(port)(pin)
   let lastTriggered = 0 // 最後にイベントがトリガーされた時刻
   const MIN_INTERVAL = 1000 // イベントをトリガーする最小間隔（ミリ秒）
