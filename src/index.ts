@@ -1,7 +1,7 @@
 export { board } from './utils/board'
 export { attachLed } from './factory/output/uniqueDevice/led'
 export { attachBuzzer } from './factory/output/uniqueDevice/buzzer'
-export { attachSensor } from './factory/analog/uniqueDevice/pressierSensor'
+export { attachSensor } from './factory/analog/uniqueDevice/pressureSensor'
 export { attachServo } from './factory/servo/uniqueDevice/servo'
 export { delay } from './utils/delay'
 export { SerialPort } from 'serialport'

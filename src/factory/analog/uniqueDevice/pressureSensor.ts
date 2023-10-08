@@ -4,19 +4,17 @@ import { analogPort } from '../analogPort'
 
 export const attachSensor = (port: SerialPort, pin: AnalogPin) => {
   const pressureSensor = analogPort(port)(pin)
-  let lastTriggered = 0 // 最後にイベントがトリガーされた時刻
-  const MIN_INTERVAL = 1000 // イベントをトリガーする最小間隔（ミリ秒）
+  let isTriggered = false
 
   return {
-    pin,
     read: async (
       method: Sensor,
       func: () => Promise<void> | Promise<number> | void | number,
     ): Promise<void> => {
       return pressureSensor.read(method, async () => {
         const now = Date.now()
-        if (now - lastTriggered >= MIN_INTERVAL) {
-          lastTriggered = now
+        if (isTriggered === false) {
+          isTriggered = true
           await func()
         }
       })

@@ -1,5 +1,5 @@
 import { board } from '../utils/board'
-import { attachSensor } from '../factory/analog/uniqueDevice/pressierSensor'
+import { attachSensor } from '../factory/analog/uniqueDevice/pressureSensor'
 import { SerialPort } from 'serialport'
 import { attachLed } from '../factory/output/uniqueDevice/led'
 
@@ -9,7 +9,6 @@ board.on('ready', (port: SerialPort) => {
   const sensor1 = attachSensor(port, 'A0')
 
   sensor1.read('on', function () {
-    //console.log('this')
     led1.blink(500)
   })
 })
