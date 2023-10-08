@@ -14,7 +14,7 @@
   },
   "name": "edison",
   "type": "module",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
