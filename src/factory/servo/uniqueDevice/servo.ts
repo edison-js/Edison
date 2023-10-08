@@ -1,7 +1,7 @@
 import { SerialPort } from 'serialport'
 import { servoPort } from '../servoPort'
 
-export const createServo = (port: SerialPort, pin: number) => {
+export const attachServo = (port: SerialPort, pin: number) => {
   const servo = servoPort(port)(pin)
 
   return {
