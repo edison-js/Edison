@@ -14,7 +14,7 @@
 
 ## Documentation
 
-Our documentation site is none now
+Our documentation site is [here](https://edison-js-document.vercel.app/)!
 
 ## If you have not yet installed the Arduino IDE ?
 
@@ -41,12 +41,11 @@ yarn add edison
 ## Getting Started
 
 ```.ts
-import { SerialPort } from 'serialport'
-import { board, attachLed } from 'edison'
+import { attachLed, board, SerialPort } from 'edison'
 
 board.on('ready', (port: SerialPort) => {
-  console.log('Board is ready!')
   const led = attachLed(port, 12)
+  console.log(1)
   led.blink(500)
 })
 ```
@@ -55,4 +54,4 @@ board.on('ready', (port: SerialPort) => {
 
 We love collaborating with folks inside and outside of GitHub and welcome contributions!
 
-> 👉 I'll create developers role on this project as soon as possible.
+> 👉 [Discord](eHB5dBkZyW)
