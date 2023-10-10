@@ -16,5 +16,5 @@ function renameJsToCjs(dirPath) {
   }
 }
 
-// ここにCommonJSモジュールが出力されるディレクトリを指定します
+// 
 renameJsToCjs(join(__dirname, 'dist', 'cjs'));
