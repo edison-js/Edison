@@ -14,7 +14,7 @@
   },
   "name": "edison",
   "type": "module",
-  "version": "0.1.23",
+  "version": "0.1.25",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -40,7 +40,14 @@
     "url": "git+https://github.com/AllenShintani/Edison.git"
   },
   "keywords": [
-    "IoT"
+    "IoT",
+    "Arduino",
+    "TypeScript",
+    "JavaScript",
+    "Robotics",
+    "edison",
+    "edison.ts",
+    "edison.js"
   ],
   "author": "aluta",
   "license": "MIT",
