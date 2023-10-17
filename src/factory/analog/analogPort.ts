@@ -20,7 +20,6 @@ export const analogPort = (port: SerialPort) => {
           if (typeof prevValue !== 'undefined') {
             // first emit will be skipped
             if (value && method === 'on') {
-              //console.log(value)
               func()
             } else if (value === false && method === 'off') {
               //console.log(value)

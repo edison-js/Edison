@@ -1,5 +1,7 @@
 <p align="center">
-  <img width="300px" src="./public/images/icon.png">
+
+  <img width="300px" src="/public/images/icon.png" alt ="なんかいい感じの画像">
+
 </p>
 
 <h1 align="center">Edison</h1>
@@ -12,7 +14,7 @@
 
 ## Documentation
 
-Our documentation site is none now
+Our documentation site is [here](https://edison-js-document.vercel.app/)!
 
 ## If you have not yet installed the Arduino IDE ?
 
@@ -39,20 +41,17 @@ yarn add edison
 ## Getting Started
 
 ```.ts
-import setup from "../utils/setup"
+import { attachLed, board, SerialPort } from 'edison'
 
-const main = async () => {
-    const port = await setup();
-    const led1 = port.led(9);
-
-    await led1.on();
-}
-
-main();
+board.on('ready', (port: SerialPort) => {
+  const led = attachLed(port, 12)
+  console.log(1)
+  led.blink(500)
+})
 ```
 
 ## Contributing
 
 We love collaborating with folks inside and outside of GitHub and welcome contributions!
 
-> 👉 I'll create developers role on this project as soon as possible.
+> 👉 [Discord](eHB5dBkZyW)

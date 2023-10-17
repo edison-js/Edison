@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "commonjs",
+    "module": "ESNext",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -9,11 +9,10 @@
     "outDir": "./dist",
     "strict": false,
     "esModuleInterop": true,
-    "types":["vitest/globals"]
   },
   "include": [
-    "src/**/*.ts"
-, "global.d.ts"  ],
+    "src/**/*.ts",
+    "global.d.ts"  ],
   "exclude": [
   "node_modules", "./dist"
   ]

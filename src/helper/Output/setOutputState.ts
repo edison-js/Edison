@@ -1,6 +1,6 @@
 import { SerialPort } from 'serialport'
 import { setPinOutput } from './setPinOutput'
-import { bufferOutput } from './bufferOutput'
+import { bufferWrite } from '../Utils/bufferWrite'
 import { delay } from '../../utils/delay'
 
 export const setOutputState = async (
@@ -14,7 +14,7 @@ export const setOutputState = async (
     await setPinOutput(pin, port)
     const bufferValue = 1 << (pin & 0x07)
     const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00])
-    await bufferOutput(port, buffer)
+    await bufferWrite(port, buffer)
     //console.log('on')
     return
   }
@@ -23,7 +23,7 @@ export const setOutputState = async (
     await setPinOutput(pin, port)
     const bufferValue = 1 << 0x00
     const buffer = Buffer.from([IOMESSAGE + (pin >> 3), bufferValue, 0x00])
-    await bufferOutput(port, buffer)
+    await bufferWrite(port, buffer)
     //console.log('off')
     return
   }
