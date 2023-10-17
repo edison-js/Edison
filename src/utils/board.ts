@@ -2,20 +2,47 @@ import { EventEmitter } from 'events'
 import { SerialPort } from 'serialport'
 import { findArduinoPath } from './findArduinoPath'
 
-export const board = new EventEmitter()
+const boardEmitter = new EventEmitter()
 
-const setupBoard = async () => {
-  const path = (await findArduinoPath()) as string
-  const port = new SerialPort({ path, baudRate: 57600 })
+let isReadyEmitted = false
 
-  let isReadyEmitted = false
+const connectAutomatic = async () => {
+  const arduinoPath = await findArduinoPath()
+  if (!arduinoPath) {
+    console.error('Could not find the path for the genuine Arduino.')
+    return
+  }
 
-  port.on('data', () => {
+  //  console.log('Arduino path: ', arduinoPath)
+  const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+
+  port.on('data', (data) => {
+    //    console.log('Data received!: ', data)
     if (!isReadyEmitted) {
-      board.emit('ready', port) // Emit 'ready' event with port as argument
+      boardEmitter.emit('ready', port)
       isReadyEmitted = true
     }
   })
 }
 
-setupBoard()
+const connectManual = (arduinoPath: string) => {
+  //  console.log('Arduino path: ', arduinoPath)
+  const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+
+  port.on('data', (data) => {
+    //  console.log('Data received!: ', data)
+    if (!isReadyEmitted) {
+      boardEmitter.emit('ready', port)
+      isReadyEmitted = true
+    }
+  })
+}
+
+export const board = {
+  on: boardEmitter.on.bind(boardEmitter),
+  connectAutomatic,
+  connectManual,
+}
+
+//
+connectAutomatic()
