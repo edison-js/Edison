@@ -1,5 +1,6 @@
 import { SerialPort } from 'serialport'
 import { pwmPort } from '../../pwm/pwmPort'
+import { outputPort } from '../outputPort'
 
 export const attachRgbLed = (
   port: SerialPort,
@@ -14,7 +15,6 @@ export const attachRgbLed = (
   greenLed.off()
   const blueLed = pwmPort(port)(bluePin)
   blueLed.off()
-
   return {
     setColor: async (r: number, g: number, b: number) => {
       await redLed.analogWrite(r)

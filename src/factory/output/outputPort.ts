@@ -11,7 +11,6 @@ export const outputPort = (port: SerialPort) => {
       off: async () => {
         await setOutputState(pin, false, port)
       },
-      // analogWriteメソッドの追加
       analogWrite: async (value: number) => {
         await setAnalogOutput(pin, value, port)
       },
