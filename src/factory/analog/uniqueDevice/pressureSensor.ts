@@ -2,7 +2,7 @@ import { SerialPort } from 'serialport'
 import { AnalogPin, Sensor } from '../../../types/analog/analog'
 import { analogPort } from '../analogPort'
 
-export const attachSensor = (port: SerialPort, pin: AnalogPin) => {
+export const attachPressureSensor = (port: SerialPort, pin: AnalogPin) => {
   const pressureSensor = analogPort(port)(pin)
   let isTriggered = false
 
