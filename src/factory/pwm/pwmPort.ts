@@ -8,7 +8,7 @@ export const pwmPort = (port: SerialPort) => {
         await setPwmState(pin, value, port)
       },
       off: async () => {
-        await setPwmState(pin, 0, port) // PWM値を0に設定してLEDをオフにする
+        await setPwmState(pin, 0, port)
       },
     }
   }
