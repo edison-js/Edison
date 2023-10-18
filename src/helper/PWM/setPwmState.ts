@@ -12,8 +12,6 @@ export const setPwmState = async (
 ) => {
   const modeBuffer = Buffer.from([SET_PIN_MODE, pin, PWM_MODE])
   await bufferWrite(port, modeBuffer)
-
-  // PWM値を設定
   const pwmBuffer = Buffer.from([
     ANALOG_MESSAGE | (pin & 0x0f),
     value & 0x7f,
