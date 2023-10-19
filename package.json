@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "@types/serialport": "^8.0.2",
     "rxjs": "^7.8.1",
     "serialport": "^12.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
+    "@types/serialport": "^8.0.3",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",

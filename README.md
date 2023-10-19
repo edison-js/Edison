@@ -6,7 +6,7 @@
 
 <h1 align="center">Edison</h1>
 
-<p align="center">Edison can control Arduino with TypeScript or JavaScript!</p>
+<p align="center">Edison can control microcontroller board with TypeScript or JavaScript!</p>
 
 <p align="center">
 
