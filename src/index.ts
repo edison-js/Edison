@@ -5,6 +5,7 @@ export { attachPressureSensor } from './factory/analog/uniqueDevice/pressureSens
 export { attachServo } from './factory/servo/uniqueDevice/servo'
 //export { attachUltrasonicSensor } from './factory/input/uniqueDevice/ultrasonicSensor'
 export { attachRgbLed } from './factory/output/uniqueDevice/rgbLed'
+export { attachLineTracking } from './factory/input/uniqueDevice/lineTracking'
 export { attachOutput } from './factory/output/uniqueDevice/output'
 export { delay } from './utils/delay'
 export { SerialPort } from 'serialport'
