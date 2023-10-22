@@ -1,11 +1,11 @@
 import { board } from '../utils/board'
 import { SerialPort } from 'serialport'
-import { attachPushButton } from '../factory/input/uniqueDevice/pushButton'
+import { attachReadSensor } from '../factory/input/uniqueDevice/readSensor'
 
 board.connectManual('/dev/ttyUSB0')
 
 board.on('ready', async (port: SerialPort) => {
   console.log('Board is ready!')
-  const pushButton = attachPushButton(port, 12)
-  await pushButton.on()
+  const readSensor = attachReadSensor(port, 12)
+  await readSensor.on()
 })

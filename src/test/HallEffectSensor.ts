@@ -1,11 +1,11 @@
 import { board } from '../utils/board'
 import { SerialPort } from 'serialport'
-import { attachPushButton } from '../factory/input/uniqueDevice/pushButton'
+import { attachHallEffectSensor } from '../factory/input/uniqueDevice/hallEffectSensor'
 
 board.connectManual('/dev/ttyUSB0')
 
 board.on('ready', async (port: SerialPort) => {
   console.log('Board is ready!')
-  const pushButton = attachPushButton(port, 12)
-  await pushButton.on()
+  const hallEffectSensor = attachHallEffectSensor(port, 12)
+  await hallEffectSensor.on()
 })
