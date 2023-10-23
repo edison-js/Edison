@@ -1,7 +1,12 @@
 {
   "dependencies": {
+    "@types/react": "^18.2.31",
+    "@types/react-dom": "^18.2.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
-    "serialport": "^12.0.0"
+    "serialport": "^12.0.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
