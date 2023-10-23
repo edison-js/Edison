@@ -28,8 +28,6 @@ export const setInputState = (
         } else {
           observer.next(true)
         }
-      } else {
-        observer.next(false)
       }
     })
   })

@@ -18,9 +18,9 @@ export const inputPort = (port: SerialPort) => {
         subscription = observable.subscribe((value: boolean) => {
           if (typeof prevValue !== 'undefined') {
             // first emit will be skipped
-            if (value === false && method === 'on') {
+            if (value && method === 'on') {
               func()
-            } else if (value === true && method === 'off') {
+            } else if (value === false && method === 'off') {
               //console.log(value)
               func()
             } else if (method === 'change' && value !== prevValue) {
