@@ -12,12 +12,18 @@ export const attachPressureSensor = (port: SerialPort, pin: AnalogPin) => {
       func: () => Promise<void> | Promise<number> | void | number,
     ): Promise<void> => {
       return pressureSensor.read(method, async () => {
-        const now = Date.now()
+        //triger once
         if (isTriggered === false) {
           isTriggered = true
           await func()
         }
       })
     },
+    onOver: async(
+      method: Sensor,
+      func: () => Promise<void> | Promise<number> | void | number,
+    ): Promise<void> => {
+      return 
+    }
   }
 }

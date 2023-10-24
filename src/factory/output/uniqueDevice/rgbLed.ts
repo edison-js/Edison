@@ -1,6 +1,5 @@
 import { SerialPort } from 'serialport'
 import { pwmPort } from '../../pwm/pwmPort'
-import { outputPort } from '../outputPort'
 
 export const attachRgbLed = (
   port: SerialPort,

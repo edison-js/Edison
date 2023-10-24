@@ -9,10 +9,13 @@
     "outDir": "./dist",
     "strict": false,
     "esModuleInterop": true,
+    "jsx": "react",
+    "allowJs": true
   },
   "include": [
     "src/**/*.ts",
-    "global.d.ts"  ],
+    "src/**/*.tsx",
+    "global.d.ts",  ],
   "exclude": [
   "node_modules", "./dist"
   ]
