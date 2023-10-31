@@ -6,6 +6,6 @@ board.connectManual('/dev/ttyUSB0')
 
 board.on('ready', (port: SerialPort) => {
   console.log('Board is ready!')
-  const led = attachLed(port, 12)
+  const led = attachLed(port, 13)
   led.blink(500)
 })
