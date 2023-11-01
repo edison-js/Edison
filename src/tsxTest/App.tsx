@@ -1,14 +1,24 @@
 // App.tsx
-import React from "react";
-import { Board } from "./Board";
-import { Led } from "./Led";
+import React, { useState, useEffect } from 'react'
+import { Board } from './Board'
+import { LED } from './LedComponent'
 
 const App: React.FC = () => {
-  return (
-    <Board>
-      <Led pin={13} blinkDuration={500} />
-    </Board>
-  );
-};
+  const [isLedOn, setLedOn] = useState(false)
 
-export default App;
+  // ここでセンサーや他の入力を監視して、isLedOnの状態を更新することができます
+  useEffect(() => {
+    // センサーの読み取りやボタンのクリックを監視して、setLedOnを呼び出してLEDの状態を更新します
+  }, [])
+
+  return (
+    <Board onReady={(port) => console.log('Board is ready!')}>
+      <LED
+        pin={13}
+        isOn={isLedOn}
+      />
+    </Board>
+  )
+}
+
+export default App

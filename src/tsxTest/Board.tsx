@@ -1,28 +1,27 @@
 // Board.tsx
-import React, { useEffect, useState, createContext, useContext } from "react";
-import { board } from "../utils/board";
-import { SerialPort } from "serialport";
+import React, { useEffect, useState, createContext, ReactNode } from 'react'
+import { board } from '../utils/board'
+import { SerialPort } from 'serialport'
 
-const BoardContext = createContext<SerialPort | null>(null);
-
-export const useBoard = () => {
-  return useContext(BoardContext);
-};
+export const BoardContext = createContext<SerialPort | null>(null)
 
 interface BoardProps {
-  children: React.ReactNode;
+  children: ReactNode
+  onReady?: (port: SerialPort) => void
 }
-
-export const Board: React.FC<BoardProps> = ({ children }) => {
-  const [port, setPort] = useState<SerialPort | null>(null);
+export const Board: React.FC<BoardProps> = ({ children, onReady }) => {
+  const [port, setPort] = useState<SerialPort | null>(null)
 
   useEffect(() => {
-    board.connectManual("/dev/ttyUSB0");
-    board.on("ready", (port) => {
-      console.log("Board is ready!");
-      setPort(port);
-    });
-  }, []);
+    board.on('ready', (connectedPort) => {
+      setPort(connectedPort)
+      onReady?.(connectedPort)
+    })
+  }, [onReady])
 
-  return <BoardContext.Provider value={port}>{children}</BoardContext.Provider>;
-};
+  return (
+    <BoardContext.Provider value={port}>
+      {port && children}
+    </BoardContext.Provider>
+  )
+}

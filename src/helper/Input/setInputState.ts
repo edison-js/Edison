@@ -19,7 +19,7 @@ export const setInputState = (
 
   return new Observable<boolean>((observer) => {
     port.on('data', (data) => {
-      console.log(data)
+      //console.log(data)
       //pin groupings are 8 pins per port
       //port 0: pins 0-7
       if ((data[0] === 0x90 && pin < 8) || (data[0] === 0x91 && pin >= 8)) {

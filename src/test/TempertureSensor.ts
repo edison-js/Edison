@@ -4,7 +4,7 @@ import { SerialPort } from 'serialport'
 import { attachLed } from '../factory/output/uniqueDevice/led'
 
 board.on('ready', (port: SerialPort) => {
-  console.log('Board is ready!')
+  //console.log('Board is ready!')
   const led1 = attachLed(port, 12)
   const sensor1 = attachPressureSensor(port, 'A0')
 

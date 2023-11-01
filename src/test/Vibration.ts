@@ -6,7 +6,7 @@ import { attachVibrationSensor } from '../factory/pwm/uniqueDevice/vibrationSens
 board.connectManual('/dev/ttyUSB0')
 
 board.on('ready', async (port: SerialPort) => {
-  console.log('Board is ready!')
+  //console.log('Board is ready!')
 
   const vibrationSensor = attachVibrationSensor(port, 3)
   await vibrationSensor.write(200)

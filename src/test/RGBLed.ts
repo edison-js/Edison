@@ -5,7 +5,7 @@ import { SerialPort } from 'serialport'
 board.connectManual('/dev/ttyUSB0')
 
 board.on('ready', async (port: SerialPort) => {
-  console.log('Board is ready!')
+  //console.log('Board is ready!')
   //red, green, blue, vcc or gnd
   const rgbLed = attachRgbLed(port, 9, 10, 11)
 
