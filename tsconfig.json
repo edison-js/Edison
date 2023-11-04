@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ES2022",
     "module": "commonjs",
     "declaration": true,
@@ -11,8 +12,12 @@
     "esModuleInterop": true,
   },
   "include": [
-    "src/**/*.ts"
-, "global.d.ts"  ],
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "global.d.ts", 
+    "src/tsxTest/testApp.tsx", 
+    "src/test/LED.ts"
+    ],
   "exclude": [
   "node_modules", "./dist"
   ]

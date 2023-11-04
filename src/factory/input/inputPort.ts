@@ -1,11 +1,10 @@
 import { SerialPort } from 'serialport'
-import { setAnalogState } from '../../uniqueDevice/setAnalogState'
-import { AnalogPin, Sensor, analogPinMapping } from '../../types/analog/analog'
+import { setInputState } from '../../helper/Input/setInputState'
 import { Subscription } from 'rxjs'
+import { Sensor } from '../../types/analog/analog'
 
-export const analogPort = (port: SerialPort) => {
-  return (analogPin: AnalogPin) => {
-    const pin = analogPinMapping[analogPin]
+export const inputPort = (port: SerialPort) => {
+  return (pin: number) => {
     let subscription: Subscription
     let prevValue: boolean
 
@@ -14,13 +13,12 @@ export const analogPort = (port: SerialPort) => {
         method: Sensor,
         func: () => Promise<void> | Promise<number> | void | number,
       ): Promise<void> => {
-        const observable = setAnalogState(pin, port)
+        const observable = setInputState(pin, port)
 
         subscription = observable.subscribe((value: boolean) => {
           if (typeof prevValue !== 'undefined') {
             // first emit will be skipped
             if (value && method === 'on') {
-              console.log(value)
               func()
             } else if (value === false && method === 'off') {
               //console.log(value)
@@ -33,11 +31,6 @@ export const analogPort = (port: SerialPort) => {
           }
           prevValue = value
         })
-      },
-      stop: () => {
-        if (subscription) {
-          subscription.unsubscribe()
-        }
       },
     }
   }

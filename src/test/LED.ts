@@ -3,7 +3,7 @@ import { setup } from '../utils/setup'
 
 const main = async () => {
   const port = await setup()
-  const led1 = port.led(12)
+  const led1 = port.led(13)
 
   for (let i = 0; i < 3; i++) {
     await led1.on()
