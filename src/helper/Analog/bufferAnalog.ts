@@ -5,7 +5,7 @@ export const bufferAnalog = (
   buffer: Buffer,
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
-    console.log(resolve)
+    //console.log(resolve)
     port.write(buffer, (err) => {
       if (err) {
         reject(err)

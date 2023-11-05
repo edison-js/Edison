@@ -1,50 +1,30 @@
 // App.tsx
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Board } from './Board'
 import { LED } from './LedComponent'
 
 const App: React.FC = () => {
-  const [isLedOn, setLedOn] = useState(false)
-  const toggleLED = () => setLedOn(!isLedOn)
+  const [isLedOn, setLedOn] = useState(true)
+  console.log(1)
 
-  console.log(3)
+  useEffect(() => {
+    console.log(5)
+    // 1秒後にLEDの状態をオンにする
+    const timer = setTimeout(() => setLedOn(true), 1000)
+
+    // コンポーネントがアンマウントされるときにタイマーをクリアする
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <Board onReady={(port) => console.log('Board is ready!')}>
+    <Board onReady={() => console.log('Board is ready!', isLedOn)}>
       <LED
         pin={13}
         isOn={isLedOn}
       />
-      <button onClick={toggleLED}>Toggle LED</button>
     </Board>
   )
 }
 
 export default App
-
-/*
-import React, { useState } from 'react'
-import { Board } from './Board'
-import { LED } from './LedComponent'
-
-const main = () => {
-  const [isLedOn, setLedOn] = useState(false)
-  const toggleLED = () => setLedOn(!isLedOn)
-  console.log(3)
-
-  return (
-    <Board onReady={(port) => console.log('Board is ready!')}>
-      <LED
-        pin={13}
-        isOn={isLedOn}
-      />
-      <button onClick={toggleLED}>Toggle LED</button>
-    </Board>
-  )
-}
-
-export default main
-
-
-*/
