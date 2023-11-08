@@ -10,8 +10,8 @@
 
 <div align="center">
 
-  <a href="https://github.com/AllenShintani/Edison/stargazers">
-    <img src="https://img.shields.io/github/stars/AllenShintani/Edison" alt="GitHub stars">
+  <a href="https://github.com/edison-js/Edison/stargazers">
+    <img src="https://img.shields.io/github/stars/edison-js/Edison" alt="GitHub stars">
   </a>
 
 [![NPM
