@@ -18,7 +18,7 @@
 version](https://img.shields.io/npm/v/edison.svg?style=flat)](https://www.npmjs.com/package/edison)
 [![NPM
 downloads](https://img.shields.io/npm/dm/edison.svg?style=flat)](https://www.npmjs.com/package/edison)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AllenShintani/Edison/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/edison-js/Edison/blob/main/LICENSE)
 </div>
 
 ## Documentation
