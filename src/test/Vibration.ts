@@ -1,5 +1,5 @@
 import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { delay } from '../utils/delay'
 import { attachVibrationSensor } from '../factory/pwm/uniqueDevice/vibrationSensor'
 

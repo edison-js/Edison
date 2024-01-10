@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/microtime": "^2.1.2",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.14",
     "react": "^18.2.0",
@@ -12,11 +13,16 @@
   "devDependencies": {
     "@types/node": "^20.8.8",
     "@types/serialport": "^8.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
     "dotenv-cli": "^7.3.0",
-    "eslint": "^8.50.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.3"
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.3",
+    "vite-plugin-checker": "^0.6.2",
+    "vitest": "^0.34.6"
   },
   "name": "edison",
   "type": "module",
@@ -38,7 +44,9 @@
     "build:cjs": "tsc -p tsconfig.cjs.json && node rename-to-cjs.cjs && node importEx-to-cjs.cjs",
     "build:esm": "tsc -p tsconfig.esm.json && node rename-to-esm.mjs",
     "build": "npm run build:cjs && npm run build:esm",
-    "test": "jest --coverage",
+    "lint": "npx eslint src/**/*.ts ",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
     "format": "prettier --write \"./src/**/*.{ts}\""
   },
   "repository": {

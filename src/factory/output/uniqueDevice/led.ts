@@ -1,5 +1,5 @@
 import { outputPort } from '../outputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { delay } from '../../../utils/delay'
 
 export const attachLed = (port: SerialPort, pin: number) => {

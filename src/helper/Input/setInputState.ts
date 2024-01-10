@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { bufferWrite } from '../Utils/bufferWrite'
 import { Observable } from 'rxjs'
 

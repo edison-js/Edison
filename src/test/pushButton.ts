@@ -1,5 +1,5 @@
-import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+// import { board } from '../utils/board'
+// import type { SerialPort } from 'serialport'
 // import { attachPushButton } from '../factory/input/uniqueDevice/pushButton'
 
 // board.connectManual('/dev/ttyUSB0')

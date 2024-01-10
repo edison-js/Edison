@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 export const setPinOutput = (pin: number, port: SerialPort): Promise<void> => {
   return new Promise((resolve, reject) => {

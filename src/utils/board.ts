@@ -16,7 +16,7 @@ const connectAutomatic = async () => {
   //  console.log('Arduino path: ', arduinoPath)
   const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
 
-  port.on('data', (data) => {
+  port.on('data', (/*data*/) => {
     //    console.log('Data received!: ', data)
     if (!isReadyEmitted) {
       boardEmitter.emit('ready', port)
@@ -29,7 +29,7 @@ const connectManual = (arduinoPath: string) => {
   //  console.log('Arduino path: ', arduinoPath)
   const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
 
-  port.on('data', (data) => {
+  port.on('data', (/*data*/) => {
     //  console.log('Data received!: ', data)
     if (!isReadyEmitted) {
       boardEmitter.emit('ready', port)
@@ -44,5 +44,4 @@ export const board = {
   connectManual,
 }
 
-//
 connectAutomatic()

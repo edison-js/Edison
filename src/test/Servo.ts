@@ -1,6 +1,6 @@
 import { board } from '../utils/board'
 import { attachServo } from '../factory/servo/uniqueDevice/servo'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 board.on('ready', async (port: SerialPort) => {
   //console.log('Board is ready!')

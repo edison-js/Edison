@@ -6,9 +6,8 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'prettier',
   ],
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
@@ -22,21 +21,13 @@ module.exports = {
   },
   parserOptions: {
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  ecmaFeatures: {
-    impliedStrict: true, //常にStrictMode
   },
   rules: {
-    'prefer-template': 'error',
-    'pretter/prettier': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-dupe-args': ['error'],
     'no-dupe-keys': ['error'],
     'no-unreachable': ['error'],
-    "brace-style": ["error", "stroustrup"]
+    //"brace-style": ["error", "stroustrup"],
   },
 }
