@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { setPinOutput } from './setPinOutput'
 import { bufferWrite } from '../Utils/bufferWrite'
 import { delay } from '../../utils/delay'

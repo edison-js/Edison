@@ -1,12 +1,18 @@
+import { Sensor } from '../../../types/analog/analog'
 import { inputPort } from '../inputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
-// export const attachPushButton = (port: SerialPort, pin: number) => {
-//   const pushButton = inputPort(port)(pin)
+export const attachButton = (port: SerialPort, pin: number) => {
+  const pushButton = inputPort(port)(pin)
 
-//   return {
-//     on: async () => {
-//       await pushButton.read()
-//     },
-//   }
-// }
+  return {
+    read: async (
+      method: Sensor,
+      func: () => Promise<void> | Promise<number> | void | number,
+    ): Promise<void> => {
+      return pushButton.read(method, async () => {
+        await func()
+      })
+    },
+  }
+}

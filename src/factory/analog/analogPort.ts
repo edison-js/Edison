@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { setAnalogState } from '../../uniqueDevice/setAnalogState'
 import { AnalogPin, Sensor, analogPinMapping } from '../../types/analog/analog'
 import { Subscription } from 'rxjs'

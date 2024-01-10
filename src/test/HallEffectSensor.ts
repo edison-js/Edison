@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { attachLed } from '../factory/output/uniqueDevice/led'
 import { board } from '../utils/board'
 import { attachHallEffectSensor } from '../factory/input/uniqueDevice/hallEffectSensor'

@@ -1,6 +1,6 @@
 import { attachOutput } from '../factory/output/uniqueDevice/output'
 import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 board.connectManual('/dev/ttyUSB0')
 
