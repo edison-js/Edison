@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { bufferAnalog } from '../helper/Analog/bufferAnalog'
 import { Observable } from 'rxjs'
 

@@ -18,4 +18,4 @@ export const analogPinMapping: AnalogpinMapping = {
   A5: 5,
 }
 
-export type Sensor = 'on' | 'off' | 'change'
+export type Sensor = 'on' | 'off' | 'change' | 'sonic'

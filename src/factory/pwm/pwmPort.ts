@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { setPwmState } from '../../helper/PWM/setPwmState'
 
 export const pwmPort = (port: SerialPort) => {

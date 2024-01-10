@@ -1,6 +1,6 @@
 <p align="center">
 
-  <img width="300px" src="/public/images/icon.png" alt ="なんかいい感じの画像">
+  <img width="300px" src="/public/images/icon.png" alt="なんかいい感じの画像">
 
 </p>
 
@@ -8,9 +8,18 @@
 
 <p align="center">Edison can control microcontroller board with TypeScript or JavaScript!</p>
 
-<p align="center">
+<div align="center">
 
-</p>
+  <a href="https://github.com/edison-js/Edison/stargazers">
+    <img src="https://img.shields.io/github/stars/edison-js/Edison" alt="GitHub stars">
+  </a>
+
+[![NPM
+version](https://img.shields.io/npm/v/edison.svg?style=flat)](https://www.npmjs.com/package/edison)
+[![NPM
+downloads](https://img.shields.io/npm/dm/edison.svg?style=flat)](https://www.npmjs.com/package/edison)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/edison-js/Edison/blob/main/LICENSE)
+</div>
 
 ## Documentation
 

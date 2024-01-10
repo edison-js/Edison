@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 // Set servo angle on Arduino
 export const setServoAngle = (

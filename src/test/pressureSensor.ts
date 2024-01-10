@@ -1,6 +1,6 @@
 import { board } from '../utils/board'
 import { attachPressureSensor } from '../factory/analog/uniqueDevice/pressureSensor'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { attachLed } from '../factory/output/uniqueDevice/led'
 
 board.on('ready', (port: SerialPort) => {

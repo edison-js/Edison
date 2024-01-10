@@ -3,5 +3,6 @@
   "semi": false,
   "quoteProps": "consistent",
   "jsxBracketSameLine": false,
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "braceStyle": "stroustrup"
 }

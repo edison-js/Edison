@@ -1,5 +1,5 @@
 import { inputPort } from '../inputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { Sensor } from '../../../types/analog/analog'
 
 export const attachHallEffectSensor = (port: SerialPort, pin: number) => {

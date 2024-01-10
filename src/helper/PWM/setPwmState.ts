@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { bufferWrite } from '../Utils/bufferWrite'
 
 const SET_PIN_MODE = 0xf4

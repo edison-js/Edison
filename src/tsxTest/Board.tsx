@@ -1,7 +1,7 @@
 // Board.tsx
 import React, { useEffect, useState, createContext, ReactNode } from 'react'
 import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 export const BoardContext = createContext<SerialPort | null>(null)
 

@@ -1,5 +1,5 @@
-import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+// import { board } from '../utils/board'
+// import type { SerialPort } from 'serialport'
 // import { attachInfraredObstacleAvoidanceSensor } from '../factory/input/uniqueDevice/infraredObstacleAvoidanceSensor'
 
 // board.connectManual('/dev/ttyUSB0')

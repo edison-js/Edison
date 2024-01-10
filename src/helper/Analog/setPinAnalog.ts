@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 export const setPinAnalog = (pin: number, port: SerialPort): Promise<void> => {
   const SET_PIN_MODE = 0xf4

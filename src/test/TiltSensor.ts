@@ -1,5 +1,5 @@
-import { board } from '../utils/board'
-import { SerialPort } from 'serialport'
+// import { board } from '../utils/board'
+// import type { SerialPort } from 'serialport'
 // import { attachTiltSensor } from '../factory/input/uniqueDevice/tiltSensor'
 
 // board.connectManual('/dev/ttyUSB0')

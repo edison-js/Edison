@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 export const bufferAnalog = (
   port: SerialPort,

@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 // This function closes the serial port. Console will be closed.
 export const portClose = (port: SerialPort): Promise<void> => {

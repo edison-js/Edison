@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 // Switch pin 9 to servo mode
 export const setPinToServo = (pin: number, port: SerialPort): Promise<void> => {

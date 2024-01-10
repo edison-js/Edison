@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { bufferWrite } from '../Utils/bufferWrite'
 import { Observable } from 'rxjs'
 
@@ -23,13 +23,17 @@ export const setInputState = (
 
     port.on('data', (data) => {
       // Check if the new data starts with 0x91 or 0x90, if so, reset the buffer
-      if (data.length > 0 && (data[0] === 0x91 || data[0] === 0x90)) {
+      if (
+        data.length > 0 &&
+        4 > data.length &&
+        (data[0] === 0x91 || data[0] === 0x90)
+      ) {
         buffer = data // Reset buffer with new data
-      } else {
-        buffer = Buffer.concat([buffer, data]) // Append new data to the existing buffer
+      } else if (4 > data.length) {
+        const dataToAppend = data.slice(0, 3) // dataToAppend is the new data
+        buffer = Buffer.concat([buffer, dataToAppend])
       }
 
-      // Process complete messages in the buffer
       if (
         ((buffer[0] === 0x90 && pin < 8) || (buffer[0] === 0x91 && pin >= 8)) &&
         buffer.length === 3
