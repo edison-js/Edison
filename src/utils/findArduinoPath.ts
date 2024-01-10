@@ -5,7 +5,7 @@ export const findArduinoPath = async (): Promise<string | null> => {
     const ports = await SerialPort.list()
     for (const port of ports) {
       //  console.log(port)
-      if (port.manufacturer && port.manufacturer.includes('Arduino')) {
+      if (port.manufacturer?.includes('Arduino')) {
         ////console.log(2)
         //  console.log('Arduino found at: ', port.path)
         return port.path

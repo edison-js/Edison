@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { setPinToServo } from '../../helper/Servo/setPinToServo'
 import { setServoAngle } from '../../helper/Servo/setServoAngle'
 import { delay } from '../../utils/delay'

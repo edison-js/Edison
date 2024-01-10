@@ -1,5 +1,5 @@
 /*
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { findArduinoPath } from './findArduinoPath'
 import { outputPort } from '../factory/output/outputPort'
 import { servoPort } from '../factory/servo/servoPort'

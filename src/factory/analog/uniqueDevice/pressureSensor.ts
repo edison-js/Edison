@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { AnalogPin, Sensor } from '../../../types/analog/analog'
 import { analogPort } from '../analogPort'
 
@@ -19,11 +19,11 @@ export const attachPressureSensor = (port: SerialPort, pin: AnalogPin) => {
         }
       })
     },
-    onOver: async(
+    onOver: async (
       method: Sensor,
       func: () => Promise<void> | Promise<number> | void | number,
     ): Promise<void> => {
-      return 
-    }
+      return
+    },
   }
 }

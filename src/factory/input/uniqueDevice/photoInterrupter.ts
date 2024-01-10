@@ -1,5 +1,5 @@
 import { inputPort } from '../inputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 // export const attachPhotoInterrupter = (port: SerialPort, pin: number) => {
 //   const photoInterrupter = inputPort(port)(pin)

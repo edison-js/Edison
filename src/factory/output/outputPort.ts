@@ -1,4 +1,4 @@
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 import { setOutputState } from '../../helper/Output/setOutputState'
 import { setAnalogOutput } from '../../helper/Output/setAnalogOutput'
 

@@ -1,5 +1,5 @@
 import { outputPort } from '../outputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 export const attachBuzzer = (port: SerialPort, pin: number) => {
   const buzzer = outputPort(port)(pin)

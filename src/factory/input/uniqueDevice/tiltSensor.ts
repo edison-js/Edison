@@ -1,5 +1,5 @@
 import { inputPort } from '../inputPort'
-import { SerialPort } from 'serialport'
+import type { SerialPort } from 'serialport'
 
 // export const attachTiltSensor = (port: SerialPort, pin: number) => {
 //   const tiltSensor = inputPort(port)(pin)
