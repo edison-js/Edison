@@ -6,13 +6,12 @@ import { LED } from './LedComponent'
 const App: React.FC = () => {
   const [isLedOn, setLedOn] = useState(false)
 
-  // ここでセンサーや他の入力を監視して、isLedOnの状態を更新することができます
   useEffect(() => {
-    // センサーの読み取りやボタンのクリックを監視して、setLedOnを呼び出してLEDの状態を更新します
+    // Monitor sensor readings and button clicks and call setLedOn to update LED state
   }, [])
 
   return (
-    <Board onReady={(port) => console.log('Board is ready!')}>
+    <Board>
       <LED
         pin={13}
         isOn={isLedOn}

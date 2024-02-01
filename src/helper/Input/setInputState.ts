@@ -18,33 +18,20 @@ export const setInputState = (
   bufferWrite(port, buffer2)
 
   return new Observable<boolean>((observer) => {
-    let buffer = Buffer.alloc(0) // Initialize an empty buffer
-    let isObserver = false // Prevent events from firing in succession.
+    port.on('data', (data: Buffer) => {
+      let lastState: undefined | boolean = undefined
 
-    port.on('data', (data) => {
-      // Check if the new data starts with 0x91 or 0x90, if so, reset the buffer
-      if (
-        data.length > 0 &&
-        4 > data.length &&
-        (data[0] === 0x91 || data[0] === 0x90)
-      ) {
-        buffer = data // Reset buffer with new data
-      } else if (4 > data.length) {
-        const dataToAppend = data.slice(0, 3) // dataToAppend is the new data
-        buffer = Buffer.concat([buffer, dataToAppend])
-      }
+      if (data.length === 0) return
+      if (data[0] !== 0x90 && data[0] !== 0x91) return
+      if (data[0] === 0x90 && pin >= 8) return
+      if (data[0] === 0x91 && pin < 8) return
 
-      if (
-        ((buffer[0] === 0x90 && pin < 8) || (buffer[0] === 0x91 && pin >= 8)) &&
-        buffer.length === 3
-      ) {
-        if (buffer[1] & (1 << pin % 8) && isObserver === true) {
-          isObserver = false
-          observer.next(false)
-        } else if (isObserver === false) {
-          isObserver = true
-          observer.next(true)
-        }
+      const buffer = data.length <= 3 ? data : data.subarray(0, 3)
+      const currentState = !!(buffer[1] & (1 << pin % 8))
+
+      if (currentState !== lastState) {
+        lastState = currentState
+        observer.next(currentState)
       }
     })
   })
