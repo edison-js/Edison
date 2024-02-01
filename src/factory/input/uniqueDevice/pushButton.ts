@@ -1,4 +1,4 @@
-import { Sensor } from '../../../types/analog/analog'
+import type { Sensor } from '../../../types/analog/analog'
 import { inputPort } from '../inputPort'
 import type { SerialPort } from 'serialport'
 
