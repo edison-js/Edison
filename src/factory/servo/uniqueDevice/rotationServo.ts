@@ -7,8 +7,10 @@ export const attachRotationServo = (port: SerialPort, pin: number) => {
   return {
     rotate: async (speed: number) => {
 
+      //0 <=speed <= 180. Stops when speed = 90. Rightward when speed > 90
+
       await servo.rotate(speed)
-      
+
     },
   }
 }
