@@ -1,8 +1,6 @@
 {
   "dependencies": {
     "@types/microtime": "^2.1.2",
-    "@types/react": "^18.2.31",
-    "@types/react-dom": "^18.2.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
@@ -12,6 +10,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.8",
+    "@types/react": "^18.2.52",
+    "@types/react-dom": "^18.2.18",
     "@types/serialport": "^8.0.3",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "dotenv-cli": "^7.3.0",
@@ -26,7 +26,7 @@
   },
   "name": "edison",
   "type": "module",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
