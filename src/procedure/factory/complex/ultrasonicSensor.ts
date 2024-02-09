@@ -17,18 +17,16 @@ export const attachUltrasonicSensor = (
       method: Sensor,
       func: () => Promise<void> | Promise<number> | void | number,
     ): Promise<void> => {
-      // echo.readを一度だけ呼び出し
       await echo.read(method, async () => {
         await func()
       })
 
-      // 無限ループでTrigのon/offのみを繰り返す
+      // eslint-disable-next-line no-constant-condition
       while (true) {
-        //console.log('Trig')
-        await trig.on() // TrigピンをHIGHにする
+        await trig.on()
         await delay(20)
-        await trig.off() // TrigピンをLOWにする
-        await delay(20) // 次の測定までの待機時間
+        await trig.off()
+        await delay(20)
       }
     },
   }

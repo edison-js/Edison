@@ -1,7 +1,8 @@
 import type { SerialPort } from 'serialport'
 import { setAnalogState } from '../../uniqueDevice/setAnalogState'
-import { AnalogPin, Sensor, analogPinMapping } from '../../types/analog/analog'
-import { Subscription } from 'rxjs'
+import type { AnalogPin, Sensor } from '../../types/analog/analog'
+import { analogPinMapping } from '../../types/analog/analog'
+import type { Subscription } from 'rxjs'
 
 export const analogPort = (port: SerialPort) => {
   return (analogPin: AnalogPin) => {
