@@ -12,7 +12,9 @@ export { attachButton } from './procedure/factory/input/uniqueDevice/pushButton'
 export { attachOutput } from './procedure/factory/output/uniqueDevice/output'
 //export { attachInfraredObstacleAvoidanceSensor } from './factory/input/uniqueDevice/infraredObstacleAvoidanceSensor'
 export { delay } from './procedure/utils/delay'
+
+//-----From here down to describe in declarative UI-----
 export { Board } from './declarative/utils/Board'
 export { Led } from './declarative/factory/output/uniqueDevice/Led'
-export { App } from './declarative/App'
+// export { App } from './declarative/App'
 export { SerialPort } from 'serialport'

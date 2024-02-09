@@ -26,7 +26,6 @@ const connectAutomatic = async () => {
 }
 
 const connectManual = (arduinoPath: string) => {
-  //  console.log('Arduino path: ', arduinoPath)
   const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
 
   port.on('data', (/*data*/) => {
