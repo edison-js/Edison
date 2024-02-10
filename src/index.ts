@@ -1,7 +1,6 @@
 export { board } from './utils/board'
 export { attachLed } from './factory/output/uniqueDevice/led'
 export { attachBuzzer } from './factory/output/uniqueDevice/buzzer'
-export { attachJoystickSensor } from './factory/analog/uniqueDevice/joystickSensor'
 export { attachPressureSensor } from './factory/analog/uniqueDevice/pressureSensor'
 export { attachServo } from './factory/servo/uniqueDevice/servo'
 export { attachRotationServo } from './factory/servo/uniqueDevice/rotationServo'
