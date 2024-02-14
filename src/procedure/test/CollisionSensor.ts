@@ -1,4 +1,4 @@
-import type { SerialPort } from '../index'
+import type { SerialPort } from 'serialport'
 import { attachCollisionSensor } from '../factory/input/uniqueDevice/collisionSensor'
 import { attachLed } from '../factory/output/uniqueDevice/led'
 import { board } from '../utils/board'

@@ -5,7 +5,7 @@ import type { SerialPort } from 'serialport'
 board.on('ready', async (port: SerialPort) => {
   //console.log('Board is ready!')
   const servo = attachServo(port, 8)
-  await servo.rotate(50)
-  await servo.rotate(150)
-  await servo.rotate(50)
+  await servo.setAngle(50)
+  await servo.setAngle(150)
+  await servo.setAngle(50)
 })
