@@ -6,13 +6,18 @@ import { delay } from '../../utils/delay'
 export const servoPort = (port: SerialPort) => {
   return (pin: number) => {
     return {
-      rotate: async (angle: number) => {
+      setAngle: async (angle: number) => {
+        const TAKE_TIME_SECOND = 2
+
         await setPinToServo(pin, port)
         await setServoAngle(pin, angle, port)
 
-        //console.log(`Rotating to ${angle} degrees`);
-        const DELAY_TIME = 180 + Math.abs(angle - 90) * 2.5
-        await delay(DELAY_TIME)
+        const time = 180 + Math.abs(angle - 90) * TAKE_TIME_SECOND
+        await delay(time)
+      },
+      rotate: async (speed: number) => {
+        await setPinToServo(pin, port)
+        await setServoAngle(pin, speed, port)
       },
     }
   }

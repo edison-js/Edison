@@ -6,7 +6,10 @@ import { renderToString } from 'react-dom/server'
 const App: React.FC = () => {
   return (
     <Board port={'/dev/ttyUSB0'}>
-      <Led pin={13} />
+      <Led
+        pin={13}
+        blink={200}
+      />
     </Board>
   )
 }

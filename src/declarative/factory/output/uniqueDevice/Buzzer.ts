@@ -2,25 +2,28 @@ import type React from 'react'
 import { attachBuzzer } from '../../../../procedure/factory/output/uniqueDevice/buzzer'
 import { board } from '../../../../procedure/utils/board'
 import type { SerialPort } from 'serialport'
+import { useEffect } from 'react'
 
-type LEDProps = {
+type BuzzerProps = {
   pin: number
   isOn?: boolean
-  blink?: number
 }
 
-export const Buzzer: React.FC<LEDProps> = ({ pin, isOn }) => {
-  board.on('ready', (port: SerialPort) => {
-    const buzzer = attachBuzzer(port, pin)
-
-    if (isOn === true) {
-      buzzer.on()
+export const Buzzer: React.FC<BuzzerProps> = ({ pin, isOn }) => {
+  useEffect(() => {
+    const attachDevices = () => {
+      board.on('ready', (port: SerialPort) => {
+        const buzzer = attachBuzzer(port, pin)
+        if (isOn) {
+          buzzer.on()
+        } else {
+          buzzer.off()
+        }
+      })
     }
 
-    if (isOn === false) {
-      buzzer.off()
-    }
-  })
+    attachDevices()
+  }, [isOn, pin])
 
   return null
 }

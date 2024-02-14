@@ -54,7 +54,6 @@ import { attachLed, board, SerialPort } from 'edison'
 
 board.on('ready', (port: SerialPort) => {
   const led = attachLed(port, 12)
-  console.log(1)
   led.blink(500)
 })
 ```
