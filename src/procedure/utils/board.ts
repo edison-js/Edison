@@ -6,6 +6,8 @@ const boardEmitter = new EventEmitter()
 
 let isReadyEmitted = false
 
+let globalPort: SerialPort | null = null
+
 const connectAutomatic = async () => {
   const arduinoPath = await findArduinoPath()
   if (!arduinoPath) {
@@ -13,11 +15,9 @@ const connectAutomatic = async () => {
     return
   }
 
-  //  console.log('Arduino path: ', arduinoPath)
   const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
 
   port.on('data', (/*data*/) => {
-    //    console.log('Data received!: ', data)
     if (!isReadyEmitted) {
       boardEmitter.emit('ready', port)
       isReadyEmitted = true
@@ -26,16 +26,21 @@ const connectAutomatic = async () => {
 }
 
 const connectManual = (arduinoPath: string) => {
-  //  console.log('Arduino path: ', arduinoPath)
+  if (globalPort?.isOpen) {
+    console.log('Port is already open.')
+    return
+  }
+
   const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
 
   port.on('data', (/*data*/) => {
-    //  console.log('Data received!: ', data)
     if (!isReadyEmitted) {
       boardEmitter.emit('ready', port)
       isReadyEmitted = true
     }
   })
+
+  globalPort = port
 }
 
 export const board = {
@@ -43,5 +48,3 @@ export const board = {
   connectAutomatic,
   connectManual,
 }
-
-// connectAutomatic()

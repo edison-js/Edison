@@ -33,7 +33,6 @@ export const setInputState = (
       }
       const currentState = !!(buffer[1] & (1 << pin % 8))
 
-      console.log('buffer:', buffer)
       if (currentState !== lastState) {
         lastState = currentState
         observer.next(currentState)

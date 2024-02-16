@@ -14,6 +14,7 @@
     "@types/react-dom": "^18.2.18",
     "@types/serialport": "^8.0.3",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.0.0",
@@ -21,6 +22,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.3",
+    "vite": "^5.1.1",
+    "vite-node": "^1.2.2",
     "vite-plugin-checker": "^0.6.2",
     "vitest": "^0.34.6"
   },
@@ -30,20 +33,19 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs",
       "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json",
     "./dist/*": "./dist/*.js"
   },
-  "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "description": "This package can control Arduino with TypeScript!",
   "scripts": {
-    "build:cjs": "tsc -p tsconfig.cjs.json && node rename-to-cjs.cjs && node importEx-to-cjs.cjs",
     "build:esm": "tsc -p tsconfig.esm.json && node rename-to-esm.mjs",
-    "build": "npm run build:cjs && npm run build:esm",
+    "build": "npm run build:esm",
+    "dev": "vite",
+    "serve": "vite preview",
     "lint": "npx eslint src/**/*.ts ",
     "type-check": "tsc --noEmit",
     "test": "vitest",
