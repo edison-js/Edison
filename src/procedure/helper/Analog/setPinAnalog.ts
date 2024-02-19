@@ -8,7 +8,6 @@ export const setPinAnalog = (pin: number, port: SerialPort): Promise<void> => {
     const setPinModeOutput = Buffer.from([SET_PIN_MODE, pin, 2])
     port.write(setPinModeOutput, (err) => {
       if (err) {
-        //console.log('Error on write: ', err.message);
         reject(err)
       } else {
         resolve()

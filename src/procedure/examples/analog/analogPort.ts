@@ -23,11 +23,9 @@ export const analogPort = (port: SerialPort) => {
             if (value && method === 'on') {
               func()
             } else if (value === false && method === 'off') {
-              //console.log(value)
               func()
             } else if (method === 'change' && value !== prevValue) {
               // is value changed?
-              //console.log('change')
               func()
             }
           }

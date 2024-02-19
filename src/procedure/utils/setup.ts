@@ -19,7 +19,6 @@ export const setup = async () => {
 
   let onDataReady: (() => void) | null = null
   const dataReady = new Promise<void>((resolve) => {
-    //console.log(3)
     onDataReady = resolve
   })
 
@@ -30,7 +29,6 @@ export const setup = async () => {
   })
   await dataReady
 
-  //console.log(2)
   return {
     servo: servoPort(port),
     led: outputPort(port),

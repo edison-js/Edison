@@ -10,6 +10,13 @@ type BoardProps = {
 }
 
 export const Board: React.FC<BoardProps> = ({ children, port }) => {
+  const currentPort = board.getCurrentPort()
+
+  if (currentPort) {
+    return (
+      <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
+    )
+  }
   board.connectManual(port)
   return <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
 }

@@ -1,0 +1,51 @@
+import type { SerialPort } from 'serialport'
+import React, { createContext } from 'react'
+import { board } from '../../../procedure/utils/board'
+import { attachCollisionSensor } from '../../../procedure/examples/input/uniqueDevice/collisionSensor'
+
+export const CollisionContext = createContext<SerialPort | null>(null)
+
+type CollisionProps = {
+  pin: number
+  onPress?: () => void
+  onRelease?: () => void
+  children: React.ReactNode
+}
+
+export const Collision: React.FC<CollisionProps> = ({
+  pin,
+  onPress,
+  onRelease,
+  children,
+}) => {
+  const setupCollision = (port: SerialPort) => {
+    const collisionSensor = attachCollisionSensor(port, pin)
+
+    if (onPress) {
+      collisionSensor.read('on', onPress)
+    }
+
+    if (onRelease) {
+      collisionSensor.read('off', onRelease)
+    }
+  }
+
+  if (board.isReady()) {
+    const port = board.getCurrentPort()
+    if (port) {
+      setupCollision(port)
+    }
+  } else {
+    const handleReady = (port: SerialPort) => {
+      setupCollision(port)
+      board.off('ready', handleReady)
+    }
+    board.on('ready', handleReady)
+  }
+
+  return (
+    <CollisionContext.Provider value={null}>
+      {children}
+    </CollisionContext.Provider>
+  )
+}

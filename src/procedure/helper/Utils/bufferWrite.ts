@@ -7,7 +7,6 @@ export const bufferWrite = (
   return new Promise((resolve, reject) => {
     port.write(buffer, (err) => {
       if (err) {
-        //console.log('Error on write: ', err.message);
         reject(err)
       } else {
         resolve()

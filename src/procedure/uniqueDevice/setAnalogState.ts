@@ -20,7 +20,6 @@ export const setAnalogState = (pin: number, port: SerialPort) => {
         const pinData = data[0] & 0x0f
         if (pin === pinData) {
           const value = data[1] | (data[2] << 7)
-          //console.log(value)
           // is 0 consecutive?
           if (value < 10) {
             onCount++

@@ -2,10 +2,10 @@ import type { SerialPort } from 'serialport'
 import { setInputState } from '../../helper/Input/setInputState'
 import type { Sensor } from '../../types/analog/analog'
 
+let prevValue: boolean | null = null
+
 export const inputPort = (port: SerialPort) => {
   return (pin: number) => {
-    let prevValue: boolean
-
     return {
       read: async (
         method: Sensor,
@@ -14,16 +14,19 @@ export const inputPort = (port: SerialPort) => {
         const observable = setInputState(pin, port)
 
         observable.subscribe((value: boolean) => {
-          if (value && method === 'off') {
+          if (prevValue !== value && value && method === 'off') {
+            // console.log('off')
+            prevValue = value
             func()
           }
-          if (value === false && method === 'on') {
+          if (prevValue !== value && value === false && method === 'on') {
+            // console.log('on')
+            prevValue = value
             func()
           }
           if (method === 'change' && value !== prevValue) {
             func()
           }
-          prevValue = value
         })
       },
     }

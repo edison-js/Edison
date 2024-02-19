@@ -1,47 +1,65 @@
 import { EventEmitter } from 'events'
 import { SerialPort } from 'serialport'
-import { findArduinoPath } from './findArduinoPath'
 
 const boardEmitter = new EventEmitter()
+let currentPort: SerialPort | null = null
+let isPortActive = false
 
-let isReadyEmitted = false
+const MAX_RECENT_LISTENERS = 2
 
-const connectAutomatic = async () => {
-  const arduinoPath = await findArduinoPath()
-  if (!arduinoPath) {
-    console.error('Could not find the path for the genuine Arduino.')
+const connectManual = (arduinoPath: string) => {
+  if (currentPort) {
+    console.log('Port is already open.')
     return
   }
 
-  //  console.log('Arduino path: ', arduinoPath)
-  const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+  try {
+    const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+    currentPort = port
 
-  port.on('data', (/*data*/) => {
-    //    console.log('Data received!: ', data)
-    if (!isReadyEmitted) {
-      boardEmitter.emit('ready', port)
-      isReadyEmitted = true
+    const onData = (/*data*/) => {
+      //console.log(`Data listeners count: ${port.listenerCount('data')}`)
+
+      if (port.listenerCount('data') > MAX_RECENT_LISTENERS) {
+        const allListeners = port.listeners('data') as ((
+          ...args: unknown[]
+        ) => void)[]
+        const oldListeners = allListeners.slice(0, -MAX_RECENT_LISTENERS)
+
+        // biome-ignore lint/complexity/noForEach: <explanation>
+        oldListeners.forEach((listener) => {
+          if (listener !== onData) {
+            port.removeListener('data', listener)
+          }
+        })
+
+        //console.log(`Listeners after removal: ${port.listenerCount('data')}`)
+      }
+
+      if (!isPortActive) {
+        console.log('Board is ready.')
+        boardEmitter.emit('ready', port)
+        isPortActive = true
+      }
     }
-  })
-}
 
-const connectManual = (arduinoPath: string) => {
-  //  console.log('Arduino path: ', arduinoPath)
-  const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+    port.on('data', onData)
 
-  port.on('data', (/*data*/) => {
-    //  console.log('Data received!: ', data)
-    if (!isReadyEmitted) {
-      boardEmitter.emit('ready', port)
-      isReadyEmitted = true
-    }
-  })
+    port.on('close', () => {
+      currentPort = null
+      port.removeAllListeners()
+      isPortActive = false
+    })
+  } catch (error) {
+    console.error('Failed to open port:', error)
+    currentPort = null
+  }
 }
 
 export const board = {
   on: boardEmitter.on.bind(boardEmitter),
-  connectAutomatic,
+  off: boardEmitter.off.bind(boardEmitter),
   connectManual,
+  getCurrentPort: () => currentPort,
+  isReady: () => isPortActive,
 }
-
-// connectAutomatic()

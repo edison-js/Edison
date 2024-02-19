@@ -1,6 +1,6 @@
 <p align="center">
 
-  <img width="300px" src="/public/images/icon.png" alt="なんかいい感じの画像">
+  <img width="300px" src="/public/images/icon.png" alt="Something nice img">
 
 </p>
 
@@ -54,7 +54,6 @@ import { attachLed, board, SerialPort } from 'edison'
 
 board.on('ready', (port: SerialPort) => {
   const led = attachLed(port, 12)
-  console.log(1)
   led.blink(500)
 })
 ```
