@@ -18,8 +18,6 @@ const connectManual = (arduinoPath: string) => {
     currentPort = port
 
     const onData = (/*data*/) => {
-      //console.log(`Data listeners count: ${port.listenerCount('data')}`)
-
       if (port.listenerCount('data') > MAX_RECENT_LISTENERS) {
         const allListeners = port.listeners('data') as ((
           ...args: unknown[]
@@ -32,8 +30,6 @@ const connectManual = (arduinoPath: string) => {
             port.removeListener('data', listener)
           }
         })
-
-        //console.log(`Listeners after removal: ${port.listenerCount('data')}`)
       }
 
       if (!isPortActive) {
