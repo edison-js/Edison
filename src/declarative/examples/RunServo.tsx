@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Board } from '../utils/Board'
-import render from '../rendere/render'
+import { render } from '../rendere/render'
 import { Button } from '../components/input/Button'
 import { Led } from '../components/output/Led'
 import { Servo } from '../components/servo/Servo'
@@ -24,6 +24,7 @@ const App: React.FC = () => {
     setAngle(angle + 10)
     setIsOn(false)
   }
+
   return (
     <Board port={'/dev/ttyUSB0'}>
       <Button

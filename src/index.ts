@@ -1,5 +1,3 @@
-import render from './declarative/rendere/render'
-
 export { board } from './procedure/utils/board'
 export { attachLed } from './procedure/examples/output/uniqueDevice/led'
 export { attachBuzzer } from './procedure/examples/output/uniqueDevice/buzzer'
@@ -12,7 +10,7 @@ export { attachHallEffectSensor } from './procedure/examples/input/uniqueDevice/
 export { attachButton } from './procedure/examples/input/uniqueDevice/pushButton'
 export { attachOutput } from './procedure/examples/output/uniqueDevice/output'
 //------------utils-----------------//
-export { render }
+export { render } from './declarative/rendere/render'
 export { delay } from './procedure/utils/delay'
 
 //-----------declarative----------------//
@@ -24,4 +22,4 @@ export { Collision } from './declarative/components/input/Collision'
 export { HallEffective } from './declarative/components/input/HallEffectSensor'
 export { Servo } from './declarative/components/servo/Servo'
 
-export { SerialPort } from 'serialport'
+export type { SerialPort } from 'serialport'

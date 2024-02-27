@@ -61,7 +61,7 @@ export type Instance = {
 /**
  * Mount a component and render the output.
  */
-const render = (node: ReactNode): Instance => {
+export const render = (node: ReactNode): Instance => {
   const edisonOptions: edisonOptions = {
     stdout: process.stdout,
     stdin: process.stdin,
@@ -87,8 +87,6 @@ const render = (node: ReactNode): Instance => {
     cleanup: () => instances.delete(edisonOptions.stdout),
   }
 }
-
-export default render
 
 const getInstance = (
   stdout: NodeJS.WriteStream,
