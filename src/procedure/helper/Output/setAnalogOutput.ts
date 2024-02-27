@@ -13,7 +13,6 @@ export const setAnalogOutput = async (
     value & 0x7f,
     (value >> 7) & 0x7f,
   ])
-  //console.log('analogWrite', buffer)
 
   await bufferWrite(port, buffer)
 }

@@ -18,9 +18,9 @@ export const setInputState = (
   bufferWrite(port, buffer2)
 
   return new Observable<boolean>((observer) => {
-    port.on('data', (data: Buffer) => {
-      let lastState: undefined | boolean = undefined
+    let lastState: undefined | boolean = undefined
 
+    port.on('data', (data: Buffer) => {
       if (data.length === 0) return
       if (data[0] !== 0x90 && data[0] !== 0x91) return
       if (data[0] === 0x90 && pin >= 8) return

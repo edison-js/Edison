@@ -1,17 +1,25 @@
 {
   "dependencies": {
-    "@types/microtime": "^2.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@types/stack-utils": "^2.0.3",
+    "ansi-escapes": "^6.2.0",
+    "auto-bind": "^5.0.1",
+    "cli-cursor": "^4.0.0",
+    "code-excerpt": "^4.0.0",
+    "is-in-ci": "^0.1.0",
+    "lodash": "^4.17.21",
     "rxjs": "^7.8.1",
     "serialport": "^12.0.0",
+    "stack-utils": "^2.0.6",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "yoga": "^0.0.20",
+    "yoga-wasm-web": "^0.3.3"
   },
   "devDependencies": {
+    "@types/ansi-escapes": "^4.0.0",
+    "@types/auto-bind": "^2.1.0",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20.8.8",
-    "@types/react": "^18.2.52",
-    "@types/react-dom": "^18.2.18",
     "@types/serialport": "^8.0.3",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@vitejs/plugin-react": "^4.2.1",
@@ -21,18 +29,27 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "is-in-ci": "^0.1.0",
+    "patch-console": "^2.0.0",
     "prettier": "^3.0.3",
+    "signal-exit": "^4.1.0",
     "vite": "^5.1.1",
     "vite-node": "^1.2.2",
     "vite-plugin-checker": "^0.6.2",
     "vitest": "^0.34.6"
   },
+  "peerDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-reconciler": "^0.28.8",
+    "react": "^18.2.0",
+    "react-reconciler": "^0.29.0"
+  },
   "name": "edison",
   "type": "module",
-  "version": "0.1.33",
+  "version": "0.1.34",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.mjs",
+      "import": "./dist/esm/index.js",
       "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json",
@@ -53,7 +70,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AllenShintani/Edison.git"
+    "url": "git+https://github.com/edison-js/Edison.git"
   },
   "keywords": [
     "IoT",
@@ -68,7 +85,7 @@
   "author": "aluta",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AllenShintani/Edison/issues"
+    "url": "https://github.com/edison-js/Edison/issues"
   },
-  "homepage": "https://github.com/AllenShintani/Edison#readme"
+  "homepage": "https://github.com/edison-js/Edison#readme"
 }

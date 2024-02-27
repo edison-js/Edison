@@ -1,6 +1,6 @@
 <p align="center">
 
-  <img width="300px" src="/public/images/icon.png" alt="なんかいい感じの画像">
+  <img width="300px" src="/public/images/icon.png" alt="Something nice img">
 
 </p>
 

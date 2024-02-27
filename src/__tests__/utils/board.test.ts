@@ -4,16 +4,16 @@
 // import { board } from '../../utils/board'
 // import { findArduinoPath } from '../../utils/findArduinoPath'
 
-// // SerialPort と findArduinoPath のモック
+// // SerialPort と findArduinoPath
 // vi.mock('serialport', () => ({
 //   SerialPort: vi.fn().mockImplementation(() => ({
 //     on: vi.fn((event, callback) => {
 //       if (event === 'data') {
-//         // 'data' イベントのモック処理
+//         // 'data'
 //         setTimeout(() => callback('some data'), 0)
 //       }
 //     }),
-//     // 他の必要なメソッドもモック化
+//
 //   })),
 // }))
 
