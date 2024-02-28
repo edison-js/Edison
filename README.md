@@ -50,12 +50,18 @@ yarn add edison
 ## Getting Started
 
 ```.ts
-import { attachLed, board, SerialPort } from 'edison'
+import { Board, Button, Led, render } from "edison"
+import React from "react"
 
-board.on('ready', (port: SerialPort) => {
-  const led = attachLed(port, 12)
-  led.blink(500)
-})
+const App: React.FC = () => {
+  return (
+    <Board>
+      <Led pin={13} blink={500} />
+    </Board>
+  )
+}
+
+render(<App />)
 ```
 
 ## Contributing
