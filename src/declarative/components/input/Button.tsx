@@ -1,7 +1,7 @@
 import type { SerialPort } from 'serialport'
 import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachButton } from '../../../procedure/examples/input/uniqueDevice/pushButton'
+import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
 
 export const ButtonContext = createContext<SerialPort | null>(null)
 
@@ -20,7 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
 }) => {
   const setupButton = (port: SerialPort) => {
-    const pushButton = attachButton(port, pin)
+    const pushButton = attachInput(port, pin)
 
     if (onRelease) {
       pushButton.read('off', onRelease)

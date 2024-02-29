@@ -1,6 +1,6 @@
 import type React from 'react'
-import { attachLed } from '../../../procedure/examples/output/uniqueDevice/led'
 import { board } from '../../../procedure/utils/board'
+import { attachOutput } from '../../../procedure/examples/output/uniqueDevice/output'
 
 type LEDProps = {
   pin: number
@@ -17,7 +17,7 @@ const setupLed = (props: LEDProps) => {
     return
   }
 
-  const led = attachLed(port, pin)
+  const led = attachOutput(port, pin)
 
   if (isOn === true) {
     led.on()

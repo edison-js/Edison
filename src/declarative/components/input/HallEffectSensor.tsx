@@ -1,7 +1,7 @@
 import type { SerialPort } from 'serialport'
 import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachHallEffectSensor } from '../../../procedure/examples/input/uniqueDevice/hallEffectSensor'
+import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
 
 export const HallEffectiveContext = createContext<SerialPort | null>(null)
 
@@ -20,7 +20,7 @@ export const HallEffective: React.FC<HallEffectProps> = ({
   children,
 }) => {
   const setupHallEffective = (port: SerialPort) => {
-    const hallEffectiveSensor = attachHallEffectSensor(port, pin)
+    const hallEffectiveSensor = attachInput(port, pin)
 
     if (onPress) {
       hallEffectiveSensor.read('on', onPress)
