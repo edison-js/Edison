@@ -21,12 +21,12 @@ export const Collision: React.FC<CollisionProps> = ({
   const setupCollision = (port: SerialPort) => {
     const collisionSensor = attachCollisionSensor(port, pin)
 
-    if (onPress) {
-      collisionSensor.read('on', onPress)
-    }
-
     if (onRelease) {
       collisionSensor.read('off', onRelease)
+    }
+
+    if (onPress) {
+      collisionSensor.read('on', onPress)
     }
   }
 
