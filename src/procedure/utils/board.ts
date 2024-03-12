@@ -5,7 +5,7 @@ const boardEmitter = new EventEmitter()
 let currentPort: SerialPort | null = null
 let isPortActive = false
 
-const MAX_RECENT_LISTENERS = 2
+const MAX_RECENT_LISTENERS = 80
 
 const connectManual = (arduinoPath: string) => {
   if (currentPort) {

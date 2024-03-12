@@ -2,31 +2,31 @@ import type { SerialPort } from 'serialport'
 import { setInputState } from '../../helper/Input/setInputState'
 import type { Sensor } from '../../types/analog/analog'
 
-let prevValue: boolean | null = null
-
 export const inputPort = (port: SerialPort) => {
   return (pin: number) => {
+    let prevValue: boolean | null = null // 各ピンごとにprevValueを保持
+
     return {
-      read: async (
+      read: (
         method: Sensor,
         func: () => Promise<void> | Promise<number> | void | number,
-      ): Promise<void> => {
+      ): void => {
         const observable = setInputState(pin, port)
 
         observable.subscribe((value: boolean) => {
-          if (prevValue !== value && value && method === 'off') {
-            // console.log('off')
+          if (method === 'change') {
+            if (value !== prevValue) {
+              prevValue = value
+              func()
+            }
+          } else if (method === 'off' && value && prevValue !== value) {
+            prevValue = value
+            func()
+          } else if (method === 'on' && !value && prevValue !== value) {
             prevValue = value
             func()
           }
-          if (prevValue !== value && value === false && method === 'on') {
-            // console.log('on')
-            prevValue = value
-            func()
-          }
-          if (method === 'change' && value !== prevValue) {
-            func()
-          }
+          // 'change'の場合は前の値との比較に関係なくfuncを実行
         })
       },
     }
