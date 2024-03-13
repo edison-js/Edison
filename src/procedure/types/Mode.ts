@@ -1,20 +1,18 @@
-export type Mode = 'Servo' | 'Output' | 'Input' | 'Pwm' ;
+export type Mode = 'Servo' | 'Output' | 'Input' | 'Pwm'
 
-export interface InputMode {
-    mode: 'Input';
+export type InputMode = {
+  mode: 'Input'
 }
 
-export interface OutputMode {
-    mode: 'Output';
-    // Output specific methods here
-  }
-
-export interface PwmMode {
-    on: () => void;
-    off: () => void;
-  }
-
-export interface ServoMode {
-    rotate: (angle: number) => Promise<void>;
+export type OutputMode = {
+  mode: 'Output'
 }
 
+export type PwmMode = {
+  on: () => void
+  off: () => void
+}
+
+export type ServoMode = {
+  rotate: (angle: number) => Promise<void>
+}

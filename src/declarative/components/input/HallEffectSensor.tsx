@@ -22,12 +22,12 @@ export const HallEffective: React.FC<HallEffectProps> = ({
   const setupHallEffective = (port: SerialPort) => {
     const hallEffectiveSensor = attachInput(port, pin)
 
-    if (onPress) {
-      hallEffectiveSensor.read('on', onPress)
-    }
-
     if (onRelease) {
       hallEffectiveSensor.read('off', onRelease)
+    }
+
+    if (onPress) {
+      hallEffectiveSensor.read('on', onPress)
     }
   }
 

@@ -6,18 +6,29 @@ import { Button } from '../components/input/Button'
 import { Led } from '../components/output/Led'
 
 const App: React.FC = () => {
-  const [ledOne, setLedOne] = useState(false)
+  const [isOn, setIsOn] = useState(false)
+  const [isOn1, setIsOn1] = useState(false)
 
   return (
     <Board port={'/dev/ttyUSB0'}>
       <Button
-        pin={12}
-        onPress={() => setLedOne(true)}
-        onRelease={() => setLedOne(false)}
+        pin={8}
+        onPress={() => setIsOn(true)}
+        onRelease={() => setIsOn(false)}
       >
         <Led
           pin={13}
-          isOn={ledOne}
+          isOn={isOn}
+        />
+      </Button>
+      <Button
+        pin={12}
+        onPress={() => setIsOn1(true)}
+        onRelease={() => setIsOn1(false)}
+      >
+        <Led
+          pin={4}
+          isOn={isOn1}
         />
       </Button>
     </Board>
