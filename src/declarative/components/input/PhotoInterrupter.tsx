@@ -9,7 +9,6 @@ type PhotoInterrupterProps = {
   pin: number
   onPress?: () => void
   onRelease?: () => void
-  debounceTime?: number
   children: React.ReactNode
 }
 

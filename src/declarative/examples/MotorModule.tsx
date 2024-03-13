@@ -20,14 +20,14 @@ const App: React.FC = () => {
   return (
     <Board port={'/dev/ttyUSB0'}>
       <Button
-        pin={12}
+        pin={9}
         onPress={handlePress}
         onRelease={handleRelease}
       >
         <MotorModule
-          pin={9}
+          pin={10}
           val={value}
-          isOn={false}
+          isOn={true}
         />
       </Button>
     </Board>
