@@ -15,7 +15,7 @@ export { Servo } from './declarative/components/servo/Servo'
 export { DigitalTileSensor } from './declarative/components/input/DigitalTileSensor'
 export { InfraredObstacleAvoidance } from './declarative/components/input/InfraredObstacleAvoidance'
 export { PhotoInterrupter } from './declarative/components/input/PhotoInterrupter'
-export { MotorModule } from './declarative/components/output/MotorModule'
+export { VibratorMotor } from './declarative/components/output/VibratorMotor'
 export { Output } from './declarative/components/output/Output'
 export { RGBLed } from './declarative/components/output/RGBLed'
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Button } from '../components/input/Button'
-import { MotorModule } from '../components/output/MotorModule'
+import { VibratorMotor } from '../components/output/VibratorMotor'
 
 const App: React.FC = () => {
   const [value, setValue] = useState(0)
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         onPress={handlePress}
         onRelease={handleRelease}
       >
-        <MotorModule
+        <VibratorMotor
           pin={10}
           val={value}
           isOn={true}
