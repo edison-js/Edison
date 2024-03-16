@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "target": "ES2022",
     "module": "ESNext",
     "declaration": true,
@@ -14,11 +18,6 @@
     "jsx": "react",
     "allowJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "global.d.ts",  ],
-  "exclude": [
-  "node_modules", "./dist"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "global.d.ts"],
+  "exclude": ["node_modules", "./dist"]
 }
