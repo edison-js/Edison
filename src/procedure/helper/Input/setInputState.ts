@@ -13,9 +13,7 @@ export const setInputState = (
   pin: number,
   port: SerialPort,
 ): Observable<boolean> => {
-  // ピンモードをデジタル入力に設定
   bufferWrite(port, Buffer.from([SET_PIN_MODE, pin, INPUT_MODE]))
-  // デジタルポートの状態変化報告を有効にする（ピンが属するポートの計算が必要）
   bufferWrite(
     port,
     Buffer.from([DIGITAL_CHANGE_MESSAGE + Math.floor(pin / 8), 1]),
@@ -32,11 +30,10 @@ export const setInputState = (
         currentBinary: Buffer,
       ) => {
         const pinIndex = pin % 8
-        const isRelevantPin = (currentBinary[0] & 0x0f) === Math.floor(pin / 8) // ピンが属するポートの検証
+        const isRelevantPin = (currentBinary[0] & 0x0f) === Math.floor(pin / 8)
         const currentState =
           isRelevantPin && ((currentBinary[1] >> pinIndex) & 1) === 1
 
-        // 前回のバイナリデータと同じか、無関係なピンのデータは無視
         if (
           !isRelevantPin ||
           (acc.preBinary && acc.preBinary.equals(currentBinary))
@@ -44,7 +41,6 @@ export const setInputState = (
           return { ...acc, emit: false }
         }
 
-        // 状態が変わった場合のみ emit を true に設定
         return {
           preBinary: currentBinary,
           lastState: currentState,
