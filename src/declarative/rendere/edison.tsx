@@ -1,5 +1,5 @@
 import process from 'node:process'
-import React, { type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import throttle from 'lodash/throttle'
 import ansiEscapes from 'ansi-escapes'
 import isInCi from 'is-in-ci'

@@ -28,6 +28,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
     'no-dupe-args': ['error'],
     'no-dupe-keys': ['error'],
     'no-unreachable': ['error'],
