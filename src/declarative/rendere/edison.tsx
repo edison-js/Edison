@@ -1,7 +1,6 @@
 import process from 'node:process'
 import { type ReactNode } from 'react'
 import throttle from 'lodash/throttle'
-import ansiEscapes from 'ansi-escapes'
 import isInCi from 'is-in-ci'
 import autoBind from 'auto-bind'
 import { type FiberRoot } from 'react-reconciler'
@@ -130,7 +129,8 @@ export default class Edison {
       return
     }
 
-    const { output, outputHeight, staticOutput } = render()
+    // If use ansi-escapes to clear the terminal, add outputHeight to Destructuring assignmen
+    const { output, staticOutput } = render()
 
     // If <Static> output isn't empty, it means new children have been added to it
     const hasStaticOutput = staticOutput && staticOutput !== '\n'
@@ -157,13 +157,13 @@ export default class Edison {
       this.fullStaticOutput += staticOutput
     }
 
-    if (outputHeight >= this.options.stdout.rows) {
-      this.options.stdout.write(
-        ansiEscapes.clearTerminal + this.fullStaticOutput + output,
-      )
-      this.lastOutput = output
-      return
-    }
+    // if (outputHeight >= this.options.stdout.rows) {
+    //   this.options.stdout.write(
+    //     ansiEscapes.clearTerminal + this.fullStaticOutput + output,
+    //   )
+    //   this.lastOutput = output
+    //   return
+    // }
 
     this.lastOutput = output
   }

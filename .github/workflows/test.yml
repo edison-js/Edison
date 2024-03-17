@@ -8,10 +8,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: setup Node.js
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: latest
-      - run: npm install
-      - run: npm run lint
-      - run: npm run type-check
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Modify package.json and Reinstall dependencies
+        if: success()
+        run: |
+          node modifyPackageJson.cjs
+          rm -rf package-lock.json node_modules
+          npm install
+
+      - name: Run type-check
+        run: npm run type-check
