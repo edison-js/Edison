@@ -9,12 +9,19 @@ let isPortActive = false
 const MAX_RECENT_LISTENERS = 80
 
 const connectManual = (arduinoPath: string) => {
-  if (currentPort) {
-    console.error('Port is already used.')
-    return
-  }
-
   const spinner = ora('Now Connecting to Device...').start()
+
+  if (currentPort) {
+    spinner.fail('Port is already used.')
+    process.exit(1)
+  }
+  const timeoutId = setTimeout(() => {
+    if (!isPortActive) {
+      spinner.fail('Failed to connect to device within 10 seconds.')
+      process.exit(1)
+    }
+  }, 10000)
+
   try {
     const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
     currentPort = port
@@ -24,7 +31,6 @@ const connectManual = (arduinoPath: string) => {
         const allListeners = port.listeners('data') as ((...args: []) => void)[]
         const oldListeners = allListeners.slice(0, -MAX_RECENT_LISTENERS)
 
-        // biome-ignore lint/complexity/noForEach: <explanation>
         oldListeners.forEach((listener) => {
           if (listener !== onData) {
             port.removeListener('data', listener)
@@ -33,6 +39,7 @@ const connectManual = (arduinoPath: string) => {
       }
 
       if (!isPortActive) {
+        clearTimeout(timeoutId)
         spinner.succeed('Device is connected successfully!')
         boardEmitter.emit('ready', port)
         isPortActive = true
@@ -48,8 +55,10 @@ const connectManual = (arduinoPath: string) => {
       isPortActive = false
     })
   } catch (error) {
-    console.error('Failed to open port:', error)
+    clearTimeout(timeoutId)
+    spinner.fail('Failed to open port: ' + error)
     currentPort = null
+    process.exit(1)
   }
 }
 

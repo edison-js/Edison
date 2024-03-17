@@ -10,10 +10,9 @@ vi.mock('serialport', () => ({
       listenerCount?: unknown
     }
     eventEmitter.listenerCount = (eventName: string) => {
-      // listenerCountの挙動を模擬
       return eventEmitter.listeners(eventName).length
     }
-    mockSerialPortInstance = eventEmitter // 生成されたインスタンスを保持
+    mockSerialPortInstance = eventEmitter
     return {
       path,
       baudRate,
@@ -30,23 +29,21 @@ vi.mock('serialport', () => ({
 describe('board', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    // currentPortのリセット処理はここで直接行うことはできない
   })
 
   it('connectManual should set isReady to true when the board is successfully connected', () => {
     expect(board.isReady()).toBe(false)
     board.connectManual('/dev/ttyUSB0')
-    // `boardEmitter`が`ready`イベントをemitするのを模擬
     setTimeout(() => {
-      mockSerialPortInstance.emit('data', 'test-data') // onDataを発火
+      mockSerialPortInstance.emit('data', 'test-data')
       expect(board.isReady()).toBe(true)
-    }, 1) // 非同期処理の完了を待つ
+    }, 1)
   })
 
   it('should handle "close" event correctly', () => {
     board.connectManual('/dev/ttyUSB0')
     setTimeout(() => {
-      mockSerialPortInstance.emit('close') // onCloseを発火
+      mockSerialPortInstance.emit('close')
       setTimeout(() => {
         expect(board.isReady()).toBe(false)
       }, 1)
