@@ -47,9 +47,8 @@ const connectManual = (arduinoPath: string) => {
     }
 
     port.on('data', onData)
-
     port.on('close', () => {
-      console.log('Board is closed.')
+      spinner.fail('Board is closed.')
       currentPort = null
       port.removeAllListeners()
       isPortActive = false
