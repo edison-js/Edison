@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events'
 import { SerialPort } from 'serialport'
+import ora from 'ora'
 
 const boardEmitter = new EventEmitter()
 let currentPort: SerialPort | null = null
@@ -9,19 +10,18 @@ const MAX_RECENT_LISTENERS = 80
 
 const connectManual = (arduinoPath: string) => {
   if (currentPort) {
-    console.log('Port is already open.')
+    console.error('Port is already used.')
     return
   }
 
+  const spinner = ora('Now Connecting to Device...').start()
   try {
     const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
     currentPort = port
 
     const onData = (/*data*/) => {
       if (port.listenerCount('data') > MAX_RECENT_LISTENERS) {
-        const allListeners = port.listeners('data') as ((
-          ...args: unknown[]
-        ) => void)[]
+        const allListeners = port.listeners('data') as ((...args: []) => void)[]
         const oldListeners = allListeners.slice(0, -MAX_RECENT_LISTENERS)
 
         // biome-ignore lint/complexity/noForEach: <explanation>
@@ -33,7 +33,7 @@ const connectManual = (arduinoPath: string) => {
       }
 
       if (!isPortActive) {
-        console.log('Board is ready.')
+        spinner.succeed('Device is connected successfully!')
         boardEmitter.emit('ready', port)
         isPortActive = true
       }
@@ -42,6 +42,7 @@ const connectManual = (arduinoPath: string) => {
     port.on('data', onData)
 
     port.on('close', () => {
+      console.log('Board is closed.')
       currentPort = null
       port.removeAllListeners()
       isPortActive = false

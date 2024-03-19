@@ -4,7 +4,7 @@ import type { Sensor } from '../../types/analog/analog'
 
 export const inputPort = (port: SerialPort) => {
   return (pin: number) => {
-    let prevValue: boolean | null = null // 各ピンごとにprevValueを保持
+    let prevValue: boolean | null = null
 
     return {
       read: (
@@ -26,7 +26,6 @@ export const inputPort = (port: SerialPort) => {
             prevValue = value
             func()
           }
-          // 'change'の場合は前の値との比較に関係なくfuncを実行
         })
       },
     }

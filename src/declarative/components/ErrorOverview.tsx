@@ -1,6 +1,5 @@
 import * as fs from 'node:fs'
 import { cwd } from 'node:process'
-import React from 'react'
 import StackUtils from 'stack-utils'
 import codeExcerpt, { type CodeExcerpt } from 'code-excerpt'
 import Box from './Box'

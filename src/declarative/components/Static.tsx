@@ -1,9 +1,4 @@
-import React, {
-  useMemo,
-  useState,
-  useLayoutEffect,
-  type ReactNode,
-} from 'react'
+import { useMemo, useState, useLayoutEffect, type ReactNode } from 'react'
 
 export type Props<T> = {
   /**
