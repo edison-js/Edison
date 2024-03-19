@@ -2,13 +2,13 @@ import type React from 'react'
 import { board } from '../../../procedure/utils/board'
 import { pwmPort } from '../../../procedure/examples/pwm/pwmPort'
 
-type VibratorMotorProps = {
+type VibrationMotorModuleProps = {
   pin: number
   val: number
   isOn?: boolean
 }
 
-const setupVibratorMotor = (props: VibratorMotorProps) => {
+const setupVibrationMotorModule = (props: VibrationMotorModuleProps) => {
   const { pin, val, isOn } = props
   const port = board.getCurrentPort()
 
@@ -17,21 +17,23 @@ const setupVibratorMotor = (props: VibratorMotorProps) => {
     return
   }
 
-  const vibratormotor = pwmPort(port)(pin)
+  const vibrationmotormodule = pwmPort(port)(pin)
 
   if (isOn === true) {
-    vibratormotor.analogWrite(val)
+    vibrationmotormodule.analogWrite(val)
   } else if (isOn === false) {
-    vibratormotor.off()
+    vibrationmotormodule.off()
   }
 }
 
-export const VibratorMotor: React.FC<VibratorMotorProps> = (props) => {
+export const VibrationMotorModule: React.FC<VibrationMotorModuleProps> = (
+  props,
+) => {
   if (board.isReady()) {
-    setupVibratorMotor(props)
+    setupVibrationMotorModule(props)
   } else {
     const handleReady = () => {
-      setupVibratorMotor(props)
+      setupVibrationMotorModule(props)
       board.off('ready', handleReady)
     }
     board.on('ready', handleReady)

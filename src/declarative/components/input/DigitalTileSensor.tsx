@@ -7,26 +7,26 @@ export const DigitalTileSensorContext = createContext<SerialPort | null>(null)
 
 type DigitalTileSensorProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const DigitalTileSensor: React.FC<DigitalTileSensorProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupDigitalTileSensor = (port: SerialPort) => {
     const digitaltilesensor = attachInput(port, pin)
 
-    if (onRelease) {
-      digitaltilesensor.read('off', onRelease)
+    if (untriggered) {
+      digitaltilesensor.read('off', untriggered)
     }
 
-    if (onPress) {
-      digitaltilesensor.read('on', onPress)
+    if (triggered) {
+      digitaltilesensor.read('on', triggered)
     }
   }
 

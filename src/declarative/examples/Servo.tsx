@@ -29,8 +29,8 @@ const App: React.FC = () => {
     <Board port={'/dev/ttyUSB0'}>
       <Button
         pin={8}
-        onPress={handlePress}
-        onRelease={handleRelease}
+        triggered={handlePress}
+        untriggered={handleRelease}
       >
         <Led
           pin={13}

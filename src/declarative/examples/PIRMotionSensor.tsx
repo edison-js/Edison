@@ -8,20 +8,16 @@ import { PIRMotionSensor } from '../components/input/PIRMotionSensor'
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)
 
-  const handlePress = () => {
-    setIsOn(true)
-  }
-
-  const handleRelease = () => {
-    setIsOn(false)
-  }
-
   return (
     <Board port={'/dev/ttyUSB0'}>
       <PIRMotionSensor
         pin={8}
-        onPress={handlePress}
-        onRelease={handleRelease}
+        triggered={() => {
+          setIsOn(true)
+        }}
+        untriggered={() => {
+          setIsOn(false)
+        }}
       >
         <Led
           pin={13}

@@ -8,23 +8,23 @@ export const InfraredObstacleAvoidanceContext =
 
 type InfraredObstacleAvoidanceProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const InfraredObstacleAvoidance: React.FC<
   InfraredObstacleAvoidanceProps
-> = ({ pin, onPress, onRelease, children }) => {
+> = ({ pin, triggered, untriggered, children }) => {
   const setupInfraredObstacleAvoidance = (port: SerialPort) => {
     const infraredobstacleavoidanceSensor = attachInput(port, pin)
 
-    if (onPress) {
-      infraredobstacleavoidanceSensor.read('on', onPress)
+    if (triggered) {
+      infraredobstacleavoidanceSensor.read('on', triggered)
     }
 
-    if (onRelease) {
-      infraredobstacleavoidanceSensor.read('off', onRelease)
+    if (untriggered) {
+      infraredobstacleavoidanceSensor.read('off', untriggered)
     }
   }
 

@@ -7,26 +7,26 @@ export const PIRMotionSensorContext = createContext<SerialPort | null>(null)
 
 type PIRMotionSensorProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const PIRMotionSensor: React.FC<PIRMotionSensorProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupPIRMotionSensor = (port: SerialPort) => {
     const pirMotionSensor = attachInput(port, pin)
 
-    if (onRelease) {
-      pirMotionSensor.read('off', onRelease)
+    if (triggered) {
+      pirMotionSensor.read('off', triggered)
     }
 
-    if (onPress) {
-      pirMotionSensor.read('on', onPress)
+    if (untriggered) {
+      pirMotionSensor.read('on', untriggered)
     }
   }
 

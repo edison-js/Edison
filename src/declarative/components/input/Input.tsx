@@ -7,26 +7,26 @@ export const InputContext = createContext<SerialPort | null>(null)
 
 type InputProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const Button: React.FC<InputProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupInput = (port: SerialPort) => {
     const input = attachInput(port, pin)
 
-    if (onRelease) {
-      input.read('off', onRelease)
+    if (untriggered) {
+      input.read('off', untriggered)
     }
 
-    if (onPress) {
-      input.read('on', onPress)
+    if (triggered) {
+      input.read('on', triggered)
     }
   }
 

@@ -7,26 +7,26 @@ export const PhotoInterrupterContext = createContext<SerialPort | null>(null)
 
 type PhotoInterrupterProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const PhotoInterrupter: React.FC<PhotoInterrupterProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupPhotoInterrupter = (port: SerialPort) => {
     const photointerrupter = attachInput(port, pin)
 
-    if (onRelease) {
-      photointerrupter.read('off', onRelease)
+    if (triggered) {
+      photointerrupter.read('off', triggered)
     }
 
-    if (onPress) {
-      photointerrupter.read('on', onPress)
+    if (untriggered) {
+      photointerrupter.read('on', untriggered)
     }
   }
 

@@ -11,9 +11,9 @@ const App: React.FC = () => {
   return (
     <Board port={'/dev/ttyUSB0'}>
       <Button
-        pin={12}
-        onPress={() => setLedOne(true)}
-        onRelease={() => setLedOne(false)}
+        pin={8}
+        triggered={() => setLedOne(true)}
+        untriggered={() => setLedOne(false)}
       >
         <Led
           pin={13}

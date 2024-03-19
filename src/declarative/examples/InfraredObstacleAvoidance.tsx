@@ -8,20 +8,16 @@ import { InfraredObstacleAvoidance } from '../components/input/InfraredObstacleA
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)
 
-  const handlePress = () => {
-    setIsOn(true)
-  }
-
-  const handleRelease = () => {
-    setIsOn(false)
-  }
-
   return (
     <Board port={'/dev/ttyUSB0'}>
       <InfraredObstacleAvoidance
-        pin={9}
-        onPress={handlePress}
-        onRelease={handleRelease}
+        pin={8}
+        triggered={() => {
+          setIsOn(true)
+        }}
+        untriggered={() => {
+          setIsOn(false)
+        }}
       >
         <Led
           pin={13}

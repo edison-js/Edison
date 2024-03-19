@@ -7,26 +7,26 @@ export const HallEffectiveContext = createContext<SerialPort | null>(null)
 
 type HallEffectProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const HallEffective: React.FC<HallEffectProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupHallEffective = (port: SerialPort) => {
     const hallEffectiveSensor = attachInput(port, pin)
 
-    if (onRelease) {
-      hallEffectiveSensor.read('off', onRelease)
+    if (untriggered) {
+      hallEffectiveSensor.read('off', untriggered)
     }
 
-    if (onPress) {
-      hallEffectiveSensor.read('on', onPress)
+    if (triggered) {
+      hallEffectiveSensor.read('on', triggered)
     }
   }
 

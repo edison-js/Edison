@@ -8,20 +8,16 @@ import { PhotoInterrupter } from '../components/input/PhotoInterrupter'
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)
 
-  const handlePress = () => {
-    setIsOn(true)
-  }
-
-  const handleRelease = () => {
-    setIsOn(false)
-  }
-
   return (
     <Board port={'/dev/ttyUSB0'}>
       <PhotoInterrupter
-        pin={9}
-        onPress={handlePress}
-        onRelease={handleRelease}
+        pin={8}
+        triggered={() => {
+          setIsOn(true)
+        }}
+        untriggered={() => {
+          setIsOn(false)
+        }}
       >
         <Led
           pin={13}

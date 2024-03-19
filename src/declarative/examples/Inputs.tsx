@@ -13,8 +13,8 @@ const App: React.FC = () => {
     <Board port={'/dev/ttyUSB0'}>
       <Button
         pin={8}
-        onPress={() => setIsOn(true)}
-        onRelease={() => setIsOn(false)}
+        triggered={() => setIsOn(true)}
+        untriggered={() => setIsOn(false)}
       >
         <Led
           pin={13}
@@ -23,8 +23,8 @@ const App: React.FC = () => {
       </Button>
       <Button
         pin={12}
-        onPress={() => setIsOn1(true)}
-        onRelease={() => setIsOn1(false)}
+        triggered={() => setIsOn1(true)}
+        untriggered={() => setIsOn1(false)}
       >
         <Led
           pin={4}

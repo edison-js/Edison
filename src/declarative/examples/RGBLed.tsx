@@ -19,19 +19,17 @@ const App: React.FC = () => {
     console.log(value)
   }
 
-  const handleRelease = () => {}
-
   return (
     <Board port={'/dev/ttyUSB0'}>
       <Button
-        pin={12}
-        onPress={handlePress}
-        onRelease={handleRelease}
+        pin={8}
+        triggered={handlePress}
+        untriggered={() => {}}
       >
         <RGBLed
-          Rpin={11}
-          Gpin={10}
-          Bpin={9}
+          Rpin={12}
+          Gpin={11}
+          Bpin={10}
           val={value}
           isOn={true}
         />
