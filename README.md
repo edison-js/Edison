@@ -19,6 +19,7 @@ version](https://img.shields.io/npm/v/edison.svg?style=flat)](https://www.npmjs.
 [![NPM
 downloads](https://img.shields.io/npm/dm/edison.svg?style=flat)](https://www.npmjs.com/package/edison)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/edison-js/Edison/blob/main/LICENSE)
+
 </div>
 
 ## Documentation
@@ -55,8 +56,11 @@ import React from "react"
 
 const App: React.FC = () => {
   return (
-    <Board>
-      <Led pin={13} blink={500} />
+    <Board port={'/dev/ttyUSB0'}> // Please replace with your port
+      <Led
+        pin={13}
+        blink={500}
+      />
     </Board>
   )
 }
