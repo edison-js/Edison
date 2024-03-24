@@ -14,6 +14,12 @@ describe('board', () => {
   beforeEach(() => {
     mockPort = new SerialPort({ path: '/dev/ttyUSB0', baudRate: 57600 })
     vi.mocked(SerialPort).mockImplementation(() => mockPort)
+
+    mockSpinner = {
+      start: vi.fn().mockReturnThis(),
+      succeed: vi.fn().mockReturnThis(),
+      fail: vi.fn().mockReturnThis(),
+    } as unknown as Ora
     vi.mocked(ora).mockReturnValue(mockSpinner)
   })
 
