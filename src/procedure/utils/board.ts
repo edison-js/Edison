@@ -6,7 +6,7 @@ const boardEmitter = new EventEmitter()
 let currentPort: SerialPort | null = null
 let isPortActive = false
 
-const MAX_RECENT_LISTENERS = 80
+const MAX_RECENT_LISTENERS = 6
 
 const connectManual = (arduinoPath: string) => {
   const spinner = ora('Now Connecting to Device...').start()
@@ -23,20 +23,38 @@ const connectManual = (arduinoPath: string) => {
   }, 10000)
 
   try {
-    const port = new SerialPort({ path: arduinoPath, baudRate: 57600 })
+    const port = new SerialPort(
+      { path: arduinoPath, baudRate: 57600 },
+      (error) => {
+        if (error) {
+          spinner.fail(
+            'Failed to open port\n ' +
+              error +
+              `.\n ---------------------------------------------------------\nWSL: If you are using WSL, run the command
+              \`\`\`sh
+              ls/dev/tty*
+              \`\`\`
+----------------------------------------------------------
+to see if the path you are passing to the "port" property of the <Board> component exists.\n
+Windows: the "port" is the COMx uploaded to microconputar.`,
+          )
+          currentPort = null
+          process.exit(1)
+        }
+      },
+    )
     currentPort = port
 
     const onData = (/*data*/) => {
-      if (port.listenerCount('data') > MAX_RECENT_LISTENERS) {
-        const allListeners = port.listeners('data') as ((...args: []) => void)[]
-        const oldListeners = allListeners.slice(0, -MAX_RECENT_LISTENERS)
+      const allListeners = port.listeners('data') as ((...args: []) => void)[]
+      const oldListeners = allListeners.slice(0, -MAX_RECENT_LISTENERS)
 
-        oldListeners.forEach((listener) => {
-          if (listener !== onData) {
-            port.removeListener('data', listener)
-          }
-        })
-      }
+      //console.log('data', port.listenerCount('data'))
+      oldListeners.forEach((listener) => {
+        if (listener !== onData) {
+          port.removeListener('data', listener)
+        }
+      })
 
       if (!isPortActive) {
         clearTimeout(timeoutId)
@@ -46,13 +64,14 @@ const connectManual = (arduinoPath: string) => {
       }
     }
 
-    port.on('data', onData)
     port.on('close', () => {
       spinner.fail('Board is closed.')
       currentPort = null
       port.removeAllListeners()
       isPortActive = false
+      process.exit(1)
     })
+    port.on('data', onData)
   } catch (error) {
     clearTimeout(timeoutId)
     spinner.fail('Failed to open port: ' + error)
