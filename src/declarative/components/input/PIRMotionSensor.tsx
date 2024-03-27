@@ -25,19 +25,17 @@ export const PIRMotionSensor: React.FC<PIRMotionSensorProps> = ({
     const pirMotionSensor = attachInput(port, pin)
 
     if (triggered) {
+      if (delaytime) {
+        await delay(delaytime)
+      }
       pirMotionSensor.read('off', triggered)
     }
 
     if (untriggered) {
       if (delaytime) {
-        const port = board.getCurrentPort()
-        if (port) {
-          port.pause()
-          await delay(delaytime)
-          port.resume()
-        }
+        await delay(delaytime)
       }
-      await pirMotionSensor.read('on', untriggered)
+      pirMotionSensor.read('on', untriggered)
     }
   }
 

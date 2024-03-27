@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Button } from '../components/input/Button'
-import { VibrationMotorModule } from '../components/output/VibrationMotorModule'
+import { VibrationMotorModule } from '../components/PWM/VibrationMotorModule'
 
 const App: React.FC = () => {
   const [value, setValue] = useState(0)

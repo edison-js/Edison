@@ -33,6 +33,7 @@ export const setInputState = (
         const isRelevantPin = (currentBinary[0] & 0x0f) === Math.floor(pin / 8)
         const currentState =
           isRelevantPin && ((currentBinary[1] >> pinIndex) & 1) === 1
+        console.log(acc)
 
         if (
           !isRelevantPin ||

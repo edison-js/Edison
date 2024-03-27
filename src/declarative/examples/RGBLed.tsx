@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
-import { RGBLed } from '../components/output/RGBLed'
+import { RGBLed } from '../components/PWM/RGBLed'
 import { Button } from '../components/input/Button'
 
 const App: React.FC = () => {
