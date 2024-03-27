@@ -1,55 +1,106 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { EventEmitter } from 'events'
+import { describe, it, beforeEach, afterEach, vi, expect } from 'vitest'
+import { SerialPort } from 'serialport'
+import type { Ora } from 'ora'
+import ora from 'ora'
 import { board } from '../../../procedure/utils/board'
 
-let mockSerialPortInstance: EventEmitter & { listenerCount: unknown }
-
-vi.mock('serialport', () => ({
-  SerialPort: vi.fn().mockImplementation(({ path, baudRate }) => {
-    const eventEmitter = new EventEmitter() as EventEmitter & {
-      listenerCount?: unknown
-    }
-    eventEmitter.listenerCount = (eventName: string) => {
-      // listenerCountの挙動を模擬
-      return eventEmitter.listeners(eventName).length
-    }
-    mockSerialPortInstance = eventEmitter // 生成されたインスタンスを保持
-    return {
-      path,
-      baudRate,
-      on: eventEmitter.on.bind(eventEmitter),
-      removeAllListeners: eventEmitter.removeAllListeners.bind(eventEmitter),
-      listeners: eventEmitter.listeners.bind(eventEmitter),
-      removeListener: eventEmitter.removeListener.bind(eventEmitter),
-      emit: eventEmitter.emit.bind(eventEmitter),
-      listenerCount: eventEmitter.listenerCount.bind(eventEmitter),
-    }
-  }),
-}))
+vi.mock('serialport')
+vi.mock('ora')
 
 describe('board', () => {
+  let mockPort: SerialPort
+  let mockSpinner: Ora
+
   beforeEach(() => {
+    mockPort = new SerialPort({ path: '/dev/ttyUSB0', baudRate: 57600 })
+    vi.mocked(SerialPort).mockImplementation(() => mockPort)
+
+    mockSpinner = {
+      start: vi.fn().mockReturnThis(),
+      succeed: vi.fn().mockReturnThis(),
+      fail: vi.fn().mockReturnThis(),
+    } as unknown as Ora
+    vi.mocked(ora).mockReturnValue(mockSpinner)
+  })
+
+  afterEach(() => {
     vi.clearAllMocks()
-    // currentPortのリセット処理はここで直接行うことはできない
   })
 
-  it('connectManual should set isReady to true when the board is successfully connected', () => {
-    expect(board.isReady()).toBe(false)
-    board.connectManual('/dev/ttyUSB0')
-    // `boardEmitter`が`ready`イベントをemitするのを模擬
-    setTimeout(() => {
-      mockSerialPortInstance.emit('data', 'test-data') // onDataを発火
-      expect(board.isReady()).toBe(true)
-    }, 1) // 非同期処理の完了を待つ
-  })
+  describe('connectManual', () => {
+    it('should handle port close event', async () => {
+      vi.spyOn(process, 'exit').mockImplementation(vi.fn())
 
-  it('should handle "close" event correctly', () => {
-    board.connectManual('/dev/ttyUSB0')
-    setTimeout(() => {
-      mockSerialPortInstance.emit('close') // onCloseを発火
-      setTimeout(() => {
+      const arduinoPath = '/dev/ttyUSB0'
+      board.connectManual(arduinoPath)
+
+      mockPort.on('close', () => {
+        expect(mockSpinner.fail).toHaveBeenCalledWith('Board is closed.')
+        expect(board.getCurrentPort()).toBeNull()
         expect(board.isReady()).toBe(false)
-      }, 1)
-    }, 1)
+        expect(process.exit).toHaveBeenCalledWith(1)
+      })
+
+      mockPort.emit('data', '*data*')
+      await new Promise((resolve) => setTimeout(resolve, 0))
+
+      mockPort.emit('close')
+    })
+  })
+
+  describe('on', () => {
+    it('should return the port status', async () => {
+      const listener = vi.fn()
+      board.on('ready', listener)
+
+      const arduinoPath = '/dev/ttyUSB0'
+      board.connectManual(arduinoPath)
+
+      mockPort.on('data', () => {
+        expect(board.isReady()).toBe(true)
+        expect(mockSpinner.succeed).toHaveBeenCalledWith(
+          'Device is connected successfully!',
+        )
+      })
+
+      mockPort.emit('data', '*data*')
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    })
+  })
+
+  describe('off', () => {
+    it('should remove event listeners', async () => {
+      const listener = vi.fn()
+      board.on('ready', listener)
+      board.off('ready', listener)
+
+      const arduinoPath = '/dev/ttyUSB0'
+      board.connectManual(arduinoPath)
+      mockPort.emit('data', '*data*')
+      await new Promise((resolve) => setTimeout(resolve, 0))
+
+      expect(listener).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('isReady', () => {
+    it('should return the port status', async () => {
+      vi.spyOn(process, 'exit').mockImplementation(vi.fn())
+
+      expect(board.isReady()).toBe(false)
+
+      const arduinoPath = '/dev/ttyUSB0'
+      board.connectManual(arduinoPath)
+
+      mockPort.on('data', () => {
+        expect(board.isReady()).toBe(true)
+        expect(mockSpinner.succeed).toHaveBeenCalledWith(
+          'Device is connected successfully!',
+        )
+      })
+
+      mockPort.emit('data', '*data*')
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    })
   })
 })

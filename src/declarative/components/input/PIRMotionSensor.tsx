@@ -2,7 +2,6 @@ import type { SerialPort } from 'serialport'
 import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
 import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
-import { delay } from '@/procedure/utils/delay'
 
 export const PIRMotionSensorContext = createContext<SerialPort | null>(null)
 
@@ -18,23 +17,16 @@ export const PIRMotionSensor: React.FC<PIRMotionSensorProps> = ({
   pin,
   triggered,
   untriggered,
-  delaytime,
   children,
 }) => {
   const setupPIRMotionSensor = async (port: SerialPort) => {
     const pirMotionSensor = attachInput(port, pin)
 
     if (triggered) {
-      if (delaytime) {
-        await delay(delaytime)
-      }
       pirMotionSensor.read('off', triggered)
     }
 
     if (untriggered) {
-      if (delaytime) {
-        await delay(delaytime)
-      }
       pirMotionSensor.read('on', untriggered)
     }
   }
