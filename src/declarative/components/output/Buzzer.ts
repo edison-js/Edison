@@ -1,6 +1,6 @@
 import type React from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachBuzzer } from '../../../procedure/examples/output/uniqueDevice/buzzer'
+import { attachOutput } from '../../../procedure/examples/output/uniqueDevice/output'
 
 type BuzzerProps = {
   pin: number
@@ -16,7 +16,7 @@ const setupBuzzer = (props: BuzzerProps) => {
     return
   }
 
-  const buzzer = attachBuzzer(port, pin)
+  const buzzer = attachOutput(port, pin)
 
   if (isOn === true) {
     buzzer.on()

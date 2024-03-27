@@ -2,7 +2,7 @@ import { inputPort } from '../inputPort'
 import type { SerialPort } from 'serialport'
 import type { Sensor } from '../../../types/analog/analog'
 
-export const attachHallEffectSensor = (port: SerialPort, pin: number) => {
+export const attachInput = (port: SerialPort, pin: number) => {
   const collisionSensor = inputPort(port)(pin)
 
   return {

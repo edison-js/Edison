@@ -3,49 +3,49 @@ import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
 import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
 
-export const HallEffectiveContext = createContext<SerialPort | null>(null)
+export const PhotoInterrupterContext = createContext<SerialPort | null>(null)
 
-type HallEffectProps = {
+type PhotoInterrupterProps = {
   pin: number
   triggered?: () => void
   untriggered?: () => void
   children: React.ReactNode
 }
 
-export const HallEffective: React.FC<HallEffectProps> = ({
+export const PhotoInterrupter: React.FC<PhotoInterrupterProps> = ({
   pin,
   triggered,
   untriggered,
   children,
 }) => {
-  const setupHallEffective = (port: SerialPort) => {
-    const hallEffectiveSensor = attachInput(port, pin)
-
-    if (untriggered) {
-      hallEffectiveSensor.read('off', untriggered)
-    }
+  const setupPhotoInterrupter = (port: SerialPort) => {
+    const photointerrupter = attachInput(port, pin)
 
     if (triggered) {
-      hallEffectiveSensor.read('on', triggered)
+      photointerrupter.read('off', triggered)
+    }
+
+    if (untriggered) {
+      photointerrupter.read('on', untriggered)
     }
   }
 
   if (board.isReady()) {
     const port = board.getCurrentPort()
     if (port) {
-      setupHallEffective(port)
+      setupPhotoInterrupter(port)
     }
   } else {
     const handleReady = (port: SerialPort) => {
-      setupHallEffective(port)
+      setupPhotoInterrupter(port)
       board.off('ready', handleReady)
     }
     board.on('ready', handleReady)
   }
 
   return (
-    <HallEffectiveContext.Provider value={null}>
+    <PhotoInterrupterContext.Provider value={null}>
       {children}
-    </HallEffectiveContext.Provider>
+    </PhotoInterrupterContext.Provider>
   )
 }

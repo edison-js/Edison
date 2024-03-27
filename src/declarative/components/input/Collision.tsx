@@ -1,32 +1,32 @@
 import type { SerialPort } from 'serialport'
 import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachCollisionSensor } from '../../../procedure/examples/input/uniqueDevice/collisionSensor'
+import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
 
 export const CollisionContext = createContext<SerialPort | null>(null)
 
 type CollisionProps = {
   pin: number
-  onPress?: () => void
-  onRelease?: () => void
+  triggered?: () => void
+  untriggered?: () => void
   children: React.ReactNode
 }
 
 export const Collision: React.FC<CollisionProps> = ({
   pin,
-  onPress,
-  onRelease,
+  triggered,
+  untriggered,
   children,
 }) => {
   const setupCollision = (port: SerialPort) => {
-    const collisionSensor = attachCollisionSensor(port, pin)
+    const collisionSensor = attachInput(port, pin)
 
-    if (onRelease) {
-      collisionSensor.read('off', onRelease)
+    if (untriggered) {
+      collisionSensor.read('off', untriggered)
     }
 
-    if (onPress) {
-      collisionSensor.read('on', onPress)
+    if (triggered) {
+      collisionSensor.read('on', triggered)
     }
   }
 
