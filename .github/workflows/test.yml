@@ -1,6 +1,9 @@
 name: Test
 
-on: push
+on:
+  push:
+    branches:
+      - '*'
 
 jobs:
   test:
@@ -32,3 +35,5 @@ jobs:
 
       - name: Run type-check
         run: npm run type-check
+
+        
