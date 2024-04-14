@@ -3,49 +3,49 @@ import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
 import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
 
-export const HallEffectiveContext = createContext<SerialPort | null>(null)
+export const DigitalTiltSensorContext = createContext<SerialPort | null>(null)
 
-type HallEffectProps = {
+type DigitalTiltSensorProps = {
   pin: number
   triggered?: () => void
   untriggered?: () => void
   children: React.ReactNode
 }
 
-export const HallEffective: React.FC<HallEffectProps> = ({
+export const DigitalTiltSensor: React.FC<DigitalTiltSensorProps> = ({
   pin,
   triggered,
   untriggered,
   children,
 }) => {
-  const setupHallEffective = (port: SerialPort) => {
-    const hallEffectiveSensor = attachInput(port, pin)
+  const setupDigitalTiltSensor = (port: SerialPort) => {
+    const DigitalTiltSensor = attachInput(port, pin)
 
     if (untriggered) {
-      hallEffectiveSensor.read('off', untriggered)
+      DigitalTiltSensor.read('off', untriggered)
     }
 
     if (triggered) {
-      hallEffectiveSensor.read('on', triggered)
+      DigitalTiltSensor.read('on', triggered)
     }
   }
 
   if (board.isReady()) {
     const port = board.getCurrentPort()
     if (port) {
-      setupHallEffective(port)
+      setupDigitalTiltSensor(port)
     }
   } else {
     const handleReady = (port: SerialPort) => {
-      setupHallEffective(port)
+      setupDigitalTiltSensor(port)
       board.off('ready', handleReady)
     }
     board.on('ready', handleReady)
   }
 
   return (
-    <HallEffectiveContext.Provider value={null}>
+    <DigitalTiltSensorContext.Provider value={null}>
       {children}
-    </HallEffectiveContext.Provider>
+    </DigitalTiltSensorContext.Provider>
   )
 }
