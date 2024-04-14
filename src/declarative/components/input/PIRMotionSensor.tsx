@@ -9,7 +9,7 @@ type PIRMotionSensorProps = {
   pin: number
   triggered?: () => void
   untriggered?: () => void
-  delaytime?: number
+  delayTime?: number
   children: React.ReactNode
 }
 

@@ -18,7 +18,7 @@ const App: React.FC = () => {
         untriggered={() => {
           setIsOn(false)
         }}
-        delaytime={5000}
+        delayTime={4000}
       >
         <Led
           pin={13}

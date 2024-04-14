@@ -4,7 +4,7 @@ import { analogPort } from '../analogPort'
 
 export const attachAnalog = (port: SerialPort, pin: AnalogPin) => {
   const pressureSensor = analogPort(port)(pin)
-    let isTriggered = false
+  let isTriggered = false
 
   return {
     read: async (

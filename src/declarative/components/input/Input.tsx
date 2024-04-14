@@ -12,7 +12,7 @@ type InputProps = {
   children: React.ReactNode
 }
 
-export const Button: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps> = ({
   pin,
   triggered,
   untriggered,
