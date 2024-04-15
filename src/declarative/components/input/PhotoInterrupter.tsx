@@ -21,12 +21,12 @@ export const PhotoInterrupter: React.FC<PhotoInterrupterProps> = ({
   const setupPhotoInterrupter = (port: SerialPort) => {
     const photointerrupter = attachInput(port, pin)
 
-    if (triggered) {
-      photointerrupter.read('off', triggered)
+    if (untriggered) {
+      photointerrupter.read('off', untriggered)
     }
 
-    if (untriggered) {
-      photointerrupter.read('on', untriggered)
+    if (triggered) {
+      photointerrupter.read('on', triggered)
     }
   }
 

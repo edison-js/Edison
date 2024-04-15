@@ -22,12 +22,12 @@ export const PIRMotionSensor: React.FC<PIRMotionSensorProps> = ({
   const setupPIRMotionSensor = async (port: SerialPort) => {
     const pirMotionSensor = attachInput(port, pin)
 
-    if (triggered) {
-      pirMotionSensor.read('off', triggered)
+    if (untriggered) {
+      pirMotionSensor.read('off', untriggered)
     }
 
-    if (untriggered) {
-      pirMotionSensor.read('on', untriggered)
+    if (triggered) {
+      pirMotionSensor.read('on', triggered)
     }
   }
 
