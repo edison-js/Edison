@@ -1,6 +1,6 @@
 import process from 'node:process'
 import { type ReactNode } from 'react'
-import throttle from 'lodash/throttle'
+import throttle from 'lodash-es/throttle.js'
 import isInCi from 'is-in-ci'
 import autoBind from 'auto-bind'
 import { type FiberRoot } from 'react-reconciler'

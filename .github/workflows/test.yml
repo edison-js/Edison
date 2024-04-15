@@ -29,11 +29,8 @@ jobs:
       - name: Modify package.json and Reinstall dependencies
         if: success()
         run: |
-          node modifyPackageJson.cjs
           rm -rf package-lock.json node_modules
           npm install
 
       - name: Run type-check
         run: npm run type-check
-
-        

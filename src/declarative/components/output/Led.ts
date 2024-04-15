@@ -1,6 +1,6 @@
 import type React from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachLed } from '@/procedure/examples/output/uniqueDevice/led'
+import { attachLed } from '../../../procedure/examples/output/uniqueDevice/led'
 
 type LEDProps = {
   pin: number

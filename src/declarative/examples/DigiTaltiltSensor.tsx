@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Led } from '../components/output/Led'
-import { DigitalTiltSensor } from '@/declarative/components/input/DigitalTiltSensor'
+import { DigitalTiltSensor } from '../../declarative/components/input/DigitalTiltSensor'
 
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)

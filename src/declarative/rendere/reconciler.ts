@@ -1,5 +1,5 @@
 import createReconciler from 'react-reconciler'
-import { DefaultEventPriority } from 'react-reconciler/constants'
+import { DefaultEventPriority } from 'react-reconciler/constants.js'
 import Yoga, { type Node as YogaNode } from 'yoga-wasm-web/auto'
 import {
   createTextNode,
