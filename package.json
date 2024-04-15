@@ -1,10 +1,45 @@
 {
+  "name": "edison",
+  "version": "0.1.35",
+  "description": "This package can control Arduino with TypeScript!",
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.js",
+  "type": "module",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "types": "./dist/esm/index.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "README.md",
+    "LICENSE.md",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "build:esm": "tsc -p tsconfig.esm.json && node rename-to-esm.mjs",
+    "build": "npm run build:esm",
+    "dev": "vite",
+    "serve": "vite preview",
+    "lint": "npx eslint src/**/*.ts* ",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write \"./src/**/*.{ts}\""
+  },
   "dependencies": {
+    "@types/lodash-es": "^4.17.12",
     "ansi-escapes": "^4.3.1",
     "auto-bind": "^5.0.1",
     "code-excerpt": "^4.0.0",
     "is-in-ci": "^0.1.0",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "ora": "^8.0.1",
     "react": "^18.2.0",
     "react-reconciler": "^0.29.0",
@@ -34,44 +69,16 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "is-in-ci": "^0.1.0",
     "prettier": "^3.0.3",
+    "source-map-loader": "^5.0.0",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.4.2",
+    "vite": "^5.1.6",
     "vite-node": "^1.2.2",
     "vite-plugin-checker": "^0.6.2",
     "vitest": "^1.4.0",
-    "vite": "^5.1.6"
-  },
-  "files": [
-    "dist",
-    "src",
-    "package.json",
-    "README.md",
-    "LICENSE.md",
-    "CONTRIBUTING.md"
-  ],
-  "name": "edison",
-  "type": "module",
-  "version": "0.1.35",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./package.json": "./package.json",
-    "./dist/*": "./dist/*.js"
-  },
-  "module": "./dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
-  "description": "This package can control Arduino with TypeScript!",
-  "scripts": {
-    "build:esm": "tsc -p tsconfig.esm.json && node rename-to-esm.mjs",
-    "build": "npm run build:esm",
-    "dev": "vite",
-    "serve": "vite preview",
-    "lint": "npx eslint src/**/*.ts* ",
-    "type-check": "tsc --noEmit",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "format": "prettier --write \"./src/**/*.{ts}\""
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   },
   "repository": {
     "type": "git",

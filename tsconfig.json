@@ -2,12 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "*": ["src/*"]
     },
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
     "declaration": true,
+    "declarationDir": "dist/esm",
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
@@ -18,6 +19,6 @@
     "jsx": "react-jsx",
     "allowJs": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "global.d.ts"],
+  "include": ["src", "global.d.ts"],
   "exclude": ["node_modules", "./dist", "./src/__tests__"]
 }
