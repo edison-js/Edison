@@ -13,7 +13,7 @@ type PIRMotionSensorProps = {
   children: React.ReactNode
 }
 
-export const PIRMotionSensor: React.FC<PIRMotionSensorProps> = ({
+export const PIRMotion: React.FC<PIRMotionSensorProps> = ({
   pin,
   triggered,
   untriggered,
