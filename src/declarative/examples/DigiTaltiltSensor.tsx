@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Led } from '../components/output/Led'
-import { DigitalTiltSensor } from '../../declarative/components/input/DigitalTiltSensor'
+import { DigitalTilt } from '../../declarative/components/input/DigitalTiltSensor'
 
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)
 
   return (
     <Board port={'/dev/ttyUSB0'}>
-      <DigitalTiltSensor
+      <DigitalTilt
         pin={8}
         triggered={() => {
           setIsOn(true)
@@ -23,7 +23,7 @@ const App: React.FC = () => {
           pin={13}
           isOn={isOn}
         />
-      </DigitalTiltSensor>
+      </DigitalTilt>
     </Board>
   )
 }
