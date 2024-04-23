@@ -12,7 +12,7 @@ type DigitalTiltSensorProps = {
   children: React.ReactNode
 }
 
-export const DigitalTiltSensor: React.FC<DigitalTiltSensorProps> = ({
+export const DigitalTilt: React.FC<DigitalTiltSensorProps> = ({
   pin,
   triggered,
   untriggered,

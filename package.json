@@ -1,6 +1,6 @@
 {
   "name": "edison",
-  "version": "0.1.36",
+  "version": "0.1.37",
   "description": "This package can control Arduino with TypeScript!",
   "main": "./dist/esm/index.js",
   "module": "./dist/esm/index.js",
