@@ -26,7 +26,10 @@ const App: React.FC = () => {
   }
 
   return (
-    <Board port={'/dev/ttyUSB0'}>
+    <Board
+      port={'/dev/ttyUSB0'}
+      baudRate={115200}
+    >
       <Button
         pin={8}
         triggered={handlePress}

@@ -10,7 +10,10 @@ const App: React.FC = () => {
   const [isOn1, setIsOn1] = useState(false)
 
   return (
-    <Board port={'/dev/ttyUSB0'}>
+    <Board
+      port={'/dev/ttyUSB0'}
+      baudRate={115200}
+    >
       <Button
         pin={8}
         triggered={() => setIsOn(true)}

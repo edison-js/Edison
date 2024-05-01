@@ -9,7 +9,10 @@ const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false)
 
   return (
-    <Board port={'/dev/ttyUSB0'}>
+    <Board
+      port={'/dev/ttyUSB0'}
+      baudRate={115200}
+    >
       <PhotoInterrupter
         pin={8}
         triggered={() => {
