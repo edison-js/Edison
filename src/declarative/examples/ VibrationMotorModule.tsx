@@ -8,7 +8,10 @@ const App: React.FC = () => {
   const [value, setValue] = useState(0)
 
   return (
-    <Board port={'/dev/ttyUSB0'}>
+    <Board
+      port={'/dev/ttyUSB0'}
+      baudRate={115200}
+    >
       <Button
         pin={8}
         triggered={() => {

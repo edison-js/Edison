@@ -7,9 +7,10 @@ export const BoardContext = createContext<SerialPort | null>(null)
 type BoardProps = {
   children: React.ReactNode
   port: string
+  baudRate: number
 }
 
-export const Board: React.FC<BoardProps> = ({ children, port }) => {
+export const Board: React.FC<BoardProps> = ({ children, port, baudRate }) => {
   const currentPort = board.getCurrentPort()
 
   if (currentPort) {
@@ -17,6 +18,6 @@ export const Board: React.FC<BoardProps> = ({ children, port }) => {
       <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
     )
   }
-  board.connectManual(port)
+  board.connectManual(port, baudRate)
   return <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
 }

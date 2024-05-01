@@ -9,7 +9,10 @@ const App: React.FC = () => {
   const [ledOne, setLedOne] = useState(false)
 
   return (
-    <Board port={'/dev/ttyUSB0'}>
+    <Board
+      port={'/dev/ttyUSB0'}
+      baudRate={115200}
+    >
       <Button
         pin={8}
         triggered={() => setLedOne(true)}
