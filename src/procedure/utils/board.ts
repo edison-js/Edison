@@ -7,7 +7,7 @@ const boardEmitter = new EventEmitter()
 let currentPort: SerialPort | null = null
 let isPortActive = false
 
-const MAX_RECENT_LISTENERS = 6
+const MAX_RECENT_LISTENERS = 2
 
 const confirmConnection = async (port: SerialPort) => {
   const endTimeout = Date.now() + 10000
