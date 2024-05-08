@@ -2,7 +2,7 @@ import type { SerialPort } from 'serialport'
 import { bufferWrite } from '../Utils/bufferWrite'
 import type { Observable } from 'rxjs'
 import { fromEventPattern } from 'rxjs'
-import { filter, map, scan } from 'rxjs/operators'
+import { distinctUntilChanged, filter, map } from 'rxjs/operators'
 import { Buffer } from 'node:buffer'
 
 const SET_PIN_MODE = 0xf4
@@ -24,31 +24,8 @@ export const setInputState = (
     (handler) => port.removeListener('data', handler),
   ).pipe(
     map((data) => (data.length <= 3 ? data : data.subarray(0, 3))),
-    scan(
-      (
-        acc: { preBinary?: Buffer; lastState?: boolean; emit: boolean },
-        currentBinary: Buffer,
-      ) => {
-        const pinIndex = pin % 8
-        const isRelevantPin = (currentBinary[0] & 0x0f) === Math.floor(pin / 8)
-        const currentState =
-          isRelevantPin && ((currentBinary[1] >> pinIndex) & 1) === 1
-        if (
-          !isRelevantPin ||
-          (acc.preBinary && acc.preBinary.equals(currentBinary))
-        ) {
-          return { ...acc, emit: false }
-        }
-
-        return {
-          preBinary: currentBinary,
-          lastState: currentState,
-          emit: acc.lastState !== currentState,
-        }
-      },
-      { emit: false },
-    ),
-    filter((acc) => acc.emit),
-    map((acc) => acc.lastState as boolean),
+    filter((data) => (data[0] & 0x0f) === Math.floor(pin / 8)),
+    map((data) => ((data[1] >> pin % 8) & 1) === 1),
+    distinctUntilChanged(),
   )
 }

@@ -3,44 +3,41 @@ import { useState } from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Button } from '../components/input/Button'
-import { Led } from '../components/output/Led'
 import { Servo } from '../components/servo/Servo'
 
 const App: React.FC = () => {
   const [angle, setAngle] = useState(0)
-  const [isOn, setIsOn] = useState(false)
 
   const handlePress = () => {
-    setAngle(angle + 10)
-    setIsOn(true)
+    if (angle >= 150) {
+      setAngle(0)
+    }
   }
 
   const handleRelease = () => {
-    if (angle >= 150) {
-      setAngle(0)
-      setIsOn(false)
-      return
-    }
-    setAngle(angle + 10)
-    setIsOn(false)
+    setAngle((prevAngle) => {
+      const newAngle = prevAngle + 10
+
+      return newAngle
+    })
   }
 
   return (
     <Board
-      port={'/dev/ttyUSB0'}
-      baudRate={115200}
+      port={'/dev/cu.usbserial-140'}
+      baudRate={57600}
     >
       <Button
         pin={8}
         triggered={handlePress}
         untriggered={handleRelease}
       >
-        <Led
-          pin={13}
-          isOn={isOn}
-        />
         <Servo
           pin={10}
+          angle={angle}
+        />
+        <Servo
+          pin={12}
           angle={angle}
         />
       </Button>

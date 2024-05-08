@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { attachServo } from '../../../procedure/examples/servo/uniqueDevice/servo'
 import { board } from '../../../procedure/utils/board'
 import type React from 'react'
@@ -9,15 +8,16 @@ type ServoProps = {
 }
 
 export const Servo: React.FC<ServoProps> = ({ pin, angle }) => {
-  useEffect(() => {
-    if (board.isReady()) {
-      const port = board.getCurrentPort()
-      if (port) {
-        const servo = attachServo(port, pin)
-        servo.setAngle(angle)
-      }
-    }
-  }, [angle, pin])
+  const port = board.getCurrentPort()
+  if (!port) {
+    console.error('Board is not connected.')
+    return null
+  }
 
+  const servo = attachServo(port, pin)
+
+  if (board.isReady()) {
+    servo.setAngle(angle)
+  }
   return null
 }
