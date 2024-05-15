@@ -1,6 +1,6 @@
 import type { SerialPort } from 'serialport'
-import { setOutputState } from '../../helper/Output/setOutputState'
-import { setAnalogOutput } from '../../helper/Output/setAnalogOutput'
+import { setOutputState } from '../helper/Output/setOutputState'
+import { setAnalogOutput } from '../helper/Output/setAnalogOutput'
 
 export const outputPort = (port: SerialPort) => {
   return (pin: number) => {

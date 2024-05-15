@@ -1,8 +1,8 @@
 import { outputPort } from '../output/outputPort'
 import { inputPort } from '../input/inputPort'
-import { delay } from '../../../index'
-import type { SerialPort } from '../../../index'
-import type { Sensor } from '../../types/analog/analog'
+import { delay } from '../../index'
+import type { SerialPort } from '../../index'
+import type { Sensor } from '../types/analog/analog'
 
 export const attachUltrasonicSensor = (
   port: SerialPort,

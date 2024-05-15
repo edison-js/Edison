@@ -1,6 +1,6 @@
 import { inputPort } from '../inputPort'
 import type { SerialPort } from 'serialport'
-import type { Sensor } from '../../../types/analog/analog'
+import type { Sensor } from '../../types/analog/analog'
 
 export const attachInput = (port: SerialPort, pin: number) => {
   const collisionSensor = inputPort(port)(pin)
