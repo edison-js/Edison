@@ -4,7 +4,7 @@ import { analogPort } from '../analogPort'
 
 export const attachAnalog = (port: SerialPort, pin: AnalogPin) => {
   const analogSensor = analogPort(port)(pin)
-  let currentValue: number | null = null
+  let currentValue: number = 0
 
   return {
     read: async (
