@@ -1,4 +1,4 @@
-import { attachServo } from '../../../procedure/examples/servo/uniqueDevice/servo'
+import { attachServo } from '../../../procedure/servo/uniqueDevice/servo'
 import { board } from '../../../procedure/utils/board'
 import type React from 'react'
 

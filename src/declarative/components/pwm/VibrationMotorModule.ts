@@ -1,6 +1,6 @@
 import type React from 'react'
 import { board } from '../../../procedure/utils/board'
-import { pwmPort } from '../../../procedure/examples/pwm/pwmPort'
+import { pwmPort } from '../../../procedure/pwm/pwmPort'
 
 type VibrationMotorModuleProps = {
   pin: number
