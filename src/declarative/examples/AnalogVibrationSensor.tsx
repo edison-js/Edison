@@ -2,7 +2,7 @@ import React from 'react'
 import { Board } from '../utils/Board'
 import { render } from '../rendere/render'
 import { Led } from '../../declarative/components/output/Led'
-import { WaterLevel } from '../../declarative/components/analog/WaterLevelSensor'
+import { AnalogVibration } from '../../declarative/components/analog/AnalogVibration'
 
 const App: React.FC = () => {
   return (
@@ -10,9 +10,10 @@ const App: React.FC = () => {
       port="/dev/cu.usbserial-1140"
       baudRate={57600}
     >
-      <WaterLevel pin="A0">
-        {(value) =>
-          value < 400 ? (
+      <AnalogVibration pin="A0">
+        {(value) => {
+          console.log(value)
+          return value < 400 ? (
             <Led
               pin={13}
               isOn={false}
@@ -23,8 +24,8 @@ const App: React.FC = () => {
               isOn={true}
             />
           )
-        }
-      </WaterLevel>
+        }}
+      </AnalogVibration>
     </Board>
   )
 }

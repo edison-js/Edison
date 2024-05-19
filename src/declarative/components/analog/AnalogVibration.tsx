@@ -4,15 +4,15 @@ import { board } from '../../../procedure/utils/board'
 import React, { createContext, useEffect, useState } from 'react'
 import type { SerialPort } from 'serialport'
 
-export const WaterLevelContext = createContext<SerialPort | null>(null)
+export const AnalogVibrationContext = createContext<SerialPort | null>(null)
 
-type WaterLevelSensorProps = {
+type AnalogVibrationProps = {
   pin: AnalogPin
   onValueChange?: (value: number) => void
   children: (value: number) => React.ReactNode
 }
 
-export const WaterLevel: React.FC<WaterLevelSensorProps> = ({
+export const AnalogVibration: React.FC<AnalogVibrationProps> = ({
   pin,
   onValueChange,
   children,
@@ -54,8 +54,8 @@ export const WaterLevel: React.FC<WaterLevelSensorProps> = ({
   }, [pin, onValueChange])
 
   return (
-    <WaterLevelContext.Provider value={port}>
+    <AnalogVibrationContext.Provider value={port}>
       {children(value)}
-    </WaterLevelContext.Provider>
+    </AnalogVibrationContext.Provider>
   )
 }
