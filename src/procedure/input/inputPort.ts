@@ -1,6 +1,6 @@
 import type { SerialPort } from 'serialport'
-import { setInputState } from '../../helper/Input/setInputState'
-import type { Sensor } from '../../types/analog/analog'
+import { setInputState } from '../helper/Input/setInputState'
+import type { Sensor } from '../types/analog/analog'
 
 export const inputPort = (port: SerialPort) => {
   return (pin: number) => {

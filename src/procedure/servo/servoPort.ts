@@ -1,7 +1,7 @@
 import type { SerialPort } from 'serialport'
-import { setPinToServo } from '../../helper/Servo/setPinToServo'
-import { setServoAngle } from '../../helper/Servo/setServoAngle'
-import { delay } from '../../utils/delay'
+import { setPinToServo } from '../helper/Servo/setPinToServo'
+import { setServoAngle } from '../helper/Servo/setServoAngle'
+import { delay } from '../utils/delay'
 
 export const servoPort = (port: SerialPort) => {
   return (pin: number) => {

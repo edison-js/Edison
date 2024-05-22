@@ -6,6 +6,8 @@ import { board } from '../../../procedure/utils/board'
 
 vi.mock('serialport')
 vi.mock('ora')
+const ARDUINO_PATH = '/dev/ttyUSB0'
+const BAUD_RATE = 57600
 
 describe('board', () => {
   let mockPort: SerialPort
@@ -31,8 +33,7 @@ describe('board', () => {
     it('should handle port close event', async () => {
       vi.spyOn(process, 'exit').mockImplementation(vi.fn())
 
-      const arduinoPath = '/dev/ttyUSB0'
-      board.connectManual(arduinoPath)
+      board.connectManual(ARDUINO_PATH, BAUD_RATE)
 
       mockPort.on('close', () => {
         expect(mockSpinner.fail).toHaveBeenCalledWith('Board is closed.')
@@ -53,8 +54,7 @@ describe('board', () => {
       const listener = vi.fn()
       board.on('ready', listener)
 
-      const arduinoPath = '/dev/ttyUSB0'
-      board.connectManual(arduinoPath)
+      board.connectManual(ARDUINO_PATH, BAUD_RATE)
 
       mockPort.on('data', () => {
         expect(board.isReady()).toBe(true)
@@ -74,8 +74,7 @@ describe('board', () => {
       board.on('ready', listener)
       board.off('ready', listener)
 
-      const arduinoPath = '/dev/ttyUSB0'
-      board.connectManual(arduinoPath)
+      board.connectManual(ARDUINO_PATH, BAUD_RATE)
       mockPort.emit('data', '*data*')
       await new Promise((resolve) => setTimeout(resolve, 0))
 
@@ -89,8 +88,7 @@ describe('board', () => {
 
       expect(board.isReady()).toBe(false)
 
-      const arduinoPath = '/dev/ttyUSB0'
-      board.connectManual(arduinoPath)
+      board.connectManual(ARDUINO_PATH, BAUD_RATE)
 
       mockPort.on('data', () => {
         expect(board.isReady()).toBe(true)

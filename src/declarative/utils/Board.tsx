@@ -15,9 +15,15 @@ export const Board: React.FC<BoardProps> = ({ children, port, baudRate }) => {
 
   if (currentPort) {
     return (
-      <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
+      <BoardContext.Provider value={currentPort}>
+        {children}
+      </BoardContext.Provider>
     )
   }
   board.connectManual(port, baudRate)
-  return <BoardContext.Provider value={null}>{children}</BoardContext.Provider>
+  return (
+    <BoardContext.Provider value={currentPort}>
+      {children}
+    </BoardContext.Provider>
+  )
 }

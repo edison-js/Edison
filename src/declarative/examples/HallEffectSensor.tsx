@@ -1,7 +1,7 @@
-import { HallEffective } from 'declarative/components/input/HallEffectSensor'
-import { Led } from 'declarative/components/output/Led'
-import { render } from 'declarative/rendere/render'
-import { Board } from 'declarative/utils/Board'
+import { HallEffective } from '../../declarative/components/input/HallEffectSensor'
+import { Led } from '../../declarative/components/output/Led'
+import { render } from '../../declarative/rendere/render'
+import { Board } from '../../declarative/utils/Board'
 import { useState } from 'react'
 
 const App: React.FC = () => {

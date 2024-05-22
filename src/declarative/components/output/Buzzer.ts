@@ -1,6 +1,6 @@
 import type React from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachOutput } from '../../../procedure/examples/output/uniqueDevice/output'
+import { attachOutput } from '../../../procedure/output/uniqueDevice/output'
 
 type BuzzerProps = {
   pin: number

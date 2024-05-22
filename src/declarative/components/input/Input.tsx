@@ -1,7 +1,7 @@
 import type { SerialPort } from 'serialport'
 import React, { createContext } from 'react'
 import { board } from '../../../procedure/utils/board'
-import { attachInput } from '../../../procedure/examples/input/uniqueDevice/input'
+import { attachInput } from '../../../procedure/input/uniqueDevice/input'
 
 export const InputContext = createContext<SerialPort | null>(null)
 
