@@ -7,41 +7,41 @@ import type { SerialPort } from 'serialport'
 export const JoystickSensorContext = createContext<SerialPort | null>(null)
 
 type JoystickSensorProps = {
-  pinx: AnalogPin
-  piny: AnalogPin
-  onValuexChange?: (x: number) => void
-  onValueyChange?: (y: number) => void
-  children: (valuex: number, valuey: number) => React.ReactNode
+  pinX: AnalogPin
+  pinY: AnalogPin
+  onValueXChange?: (x: number) => void
+  onValueYChange?: (y: number) => void
+  children: (valueX: number, valueY: number) => React.ReactNode
 }
 
 export const JoystickSensor: React.FC<JoystickSensorProps> = ({
-  pinx,
-  piny,
-  onValuexChange,
-  onValueyChange,
+  pinX,
+  pinY,
+  onValueXChange,
+  onValueYChange,
   children,
 }) => {
   const [port, setPort] = useState<SerialPort | null>(null)
-  const [valuex, setValuex] = useState<number>(0)
-  const [valuey, setValuey] = useState<number>(0)
+  const [valueX, setValueX] = useState<number>(0)
+  const [valueY, setValueY] = useState<number>(0)
 
   useEffect(() => {
     const setupSensor = (port: SerialPort) => {
-      const joystickSensorX = attachAnalog(port, pinx)
-      const joystickSensorY = attachAnalog(port, piny)
+      const joystickSensorX = attachAnalog(port, pinX)
+      const joystickSensorY = attachAnalog(port, pinY)
 
-      joystickSensorX.read('change', async (sensorValuex: number) => {
-        setValuex(sensorValuex)
+      joystickSensorX.read('change', async (sensorValueX: number) => {
+        setValueX(sensorValueX)
 
-        if (onValuexChange) {
-          onValuexChange(sensorValuex)
+        if (onValueXChange) {
+          onValueXChange(sensorValueX)
         }
       })
-      joystickSensorY.read('change', async (sensorValuey: number) => {
-        setValuey(sensorValuey)
+      joystickSensorY.read('change', async (sensorValueY: number) => {
+        setValueY(sensorValueY)
 
-        if (onValueyChange) {
-          onValueyChange(sensorValuey)
+        if (onValueYChange) {
+          onValueYChange(sensorValueY)
         }
       })
     }
@@ -65,11 +65,11 @@ export const JoystickSensor: React.FC<JoystickSensorProps> = ({
     return () => {
       board.off('ready', handleReady)
     }
-  }, [pinx, piny, onValuexChange, onValueyChange])
+  }, [pinX, pinY, onValueXChange, onValueYChange])
 
   return (
     <JoystickSensorContext.Provider value={port}>
-      {children(valuex, valuey)}
+      {children(valueX, valueY)}
     </JoystickSensorContext.Provider>
   )
 }

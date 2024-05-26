@@ -22,10 +22,9 @@ export const analogPort = (port: SerialPort) => {
 
         const onData = (data: Buffer) => {
           const index = data.indexOf(ANALOG_MESSAGE + pin)
-          if (index !== -1) {
-            const value = data[index + 1] | (data[index + 2] << 7)
-            observer.next(value)
-          }
+          if (index === -1) return
+          const value = data[index + 1] | (data[index + 2] << 7)
+          observer.next(value)
         }
         port.on('data', onData)
 

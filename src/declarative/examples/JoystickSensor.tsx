@@ -13,19 +13,24 @@ const App: React.FC = () => {
       baudRate={57600}
     >
       <JoystickSensor
-        pinx="A0"
-        piny="A1"
+        pinX="A0"
+        pinY="A1"
       >
         {(x, y) => {
-          console.log(x - NEUTRAL_X, y - NEUTRAL_Y)
-          const angle = Math.floor(Math.acos((x - NEUTRAL_X) / NEUTRAL_X) * 60)
-          console.log(angle)
-
+          const angleX = Math.floor(Math.acos((x - NEUTRAL_X) / NEUTRAL_X) * 60)
+          const angleY = Math.floor(Math.acos((y - NEUTRAL_Y) / NEUTRAL_Y) * 60)
+          console.log(angleX, angleY)
           return (
-            <Servo
-              pin={8}
-              angle={angle}
-            />
+            <>
+              <Servo
+                pin={8}
+                angle={angleX}
+              />
+              <Servo
+                pin={9}
+                angle={angleY}
+              />
+            </>
           )
         }}
       </JoystickSensor>
