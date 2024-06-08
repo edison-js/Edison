@@ -41,7 +41,7 @@ const connectManual = async (path: string, baudRate: number) => {
               \`\`\`
 ----------------------------------------------------------
 to see if the path you are passing to the "port" property of the <Board> component exists.\n
-Windows: the "port" is the COMx uploaded to microconputar.`,
+Windows: the "port" is the COMx uploaded to microcomputer.`,
         )
         currentPort = null
         process.exit(1)
